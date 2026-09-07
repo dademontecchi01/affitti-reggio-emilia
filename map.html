@@ -203,7 +203,7 @@
     function popupHtml(l) {
       const exp = l.expenses != null ? ` + ${l.expenses} spese` : "";
       return `<div style="font-weight:600;margin-bottom:4px">${l.title}</div>
-        <div style="color:#787774;margin-bottom:6px">${l.zone}</div>
+        <div style="color:#787774;margin-bottom:6px">${l.zone}${l.approx ? " · zona approx" : ""}</div>
         <div><b>${l.price} €</b>${exp} · ~${perPerson(l)} €/testa</div>
         <div style="color:#787774;margin:4px 0 8px">${l.mq || "?"} mq · ${l.bedrooms || "?"} camere${l.garage ? " · garage" : ""}${fmtAvail(l.available)}</div>
         <a href="${l.url}" target="_blank" rel="noopener">Apri annuncio →</a>`;
@@ -226,12 +226,14 @@
 
       const bounds = [];
       shown.forEach((l) => {
+        const approx = !!l.approx;
         const marker = L.circleMarker([l.lat, l.lng], {
-          radius: 8,
-          color: "#fff",
-          weight: 2,
-          fillColor: "#2383e2",
-          fillOpacity: 1
+          radius: approx ? 9 : 8,
+          color: approx ? "#2383e2" : "#fff",
+          weight: approx ? 2 : 2,
+          dashArray: approx ? "4 3" : null,
+          fillColor: approx ? "#9dc7f0" : "#2383e2",
+          fillOpacity: approx ? 0.85 : 1
         }).addTo(map).bindPopup(popupHtml(l));
         markers[l.id] = marker;
         bounds.push([l.lat, l.lng]);
@@ -240,6 +242,7 @@
           l.zone,
           (l.mq ? l.mq + " mq" : null),
           (l.bedrooms ? l.bedrooms + " camere" : null),
+          l.approx ? "zona approx" : null,
           l.garage ? "garage" : null,
           l.expenses != null ? "+" + l.expenses + " spese" : null,
           "~" + perPerson(l) + " €/testa"

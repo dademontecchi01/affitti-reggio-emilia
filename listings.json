@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T23:06:00+02:00",
+  "updatedAt": "2026-09-07T23:14:41+02:00",
   "criteria": {
     "city": "Reggio Emilia",
     "zones": [
@@ -27,7 +27,7 @@
     {
       "id": "imm-106538453",
       "title": "Trilocale Via Martiri della Bettola",
-      "zone": "Canalina / Baragalla",
+      "zone": "Canalina / Crocetta / Baragalla",
       "address": "Via Martiri della Bettola, Reggio Emilia",
       "lat": 44.6831507,
       "lng": 10.6221433,
@@ -41,7 +41,8 @@
       "available": "2027-01-01",
       "url": "https://www.immobiliare.it/annunci/106538453/",
       "source": "immobiliare.it",
-      "notes": "Garage privato incluso"
+      "notes": "Garage privato incluso",
+      "approx": false
     },
     {
       "id": "imm-131524220",
@@ -60,15 +61,16 @@
       "available": null,
       "url": "https://www.immobiliare.it/annunci/131524220/",
       "source": "immobiliare.it / idealista.it",
-      "notes": "Spese condominiali incluse (da scan); 6° piano | Idealista https://www.idealista.it/immobile/36400522/"
+      "notes": "Spese condominiali incluse (da scan); 6° piano | Idealista https://www.idealista.it/immobile/36400522/",
+      "approx": false
     },
     {
       "id": "casa-54027194",
       "title": "Attico Viale Umberto I",
       "zone": "San Pellegrino / Ospedale",
       "address": "Viale Umberto I, Reggio Emilia",
-      "lat": 44.6865727,
-      "lng": 10.6258649,
+      "lat": 44.6884852,
+      "lng": 10.6278165,
       "price": 750,
       "expenses": 300,
       "mq": 145,
@@ -79,7 +81,8 @@
       "available": null,
       "url": "https://www.immobiliare.it/annunci/129229222/",
       "source": "immobiliare.it / casa.it",
-      "notes": "3 camere; spese elevate (~300€)"
+      "notes": "3 camere; spese elevate (~300€)",
+      "approx": false
     },
     {
       "id": "imm-132233466",
@@ -98,7 +101,8 @@
       "available": null,
       "url": "https://www.immobiliare.it/annunci/132233466/",
       "source": "immobiliare.it",
-      "notes": ""
+      "notes": "",
+      "approx": false
     },
     {
       "id": "casa-54567874",
@@ -117,15 +121,16 @@
       "available": "subito",
       "url": "https://www.casa.it/immobili/54567874/",
       "source": "casa.it",
-      "notes": "3 camere + 2 bagni; spese ~225€/mese"
+      "notes": "3 camere + 2 bagni; spese ~225€/mese",
+      "approx": false
     },
     {
       "id": "casa-53794043",
       "title": "A959 vicino Ospedale",
       "zone": "San Pellegrino / Ospedale",
       "address": "Zona Ospedale Santa Maria, Reggio Emilia",
-      "lat": 44.6875,
-      "lng": 10.6285,
+      "lat": 44.6862,
+      "lng": 10.6274,
       "price": 800,
       "expenses": 100,
       "mq": 112,
@@ -136,15 +141,16 @@
       "available": "subito",
       "url": "https://www.casa.it/immobili/53794043/",
       "source": "casa.it",
-      "notes": "2 camere + studio"
+      "notes": "2 camere + studio | Pin di zona (indirizzo esatto non in annuncio)",
+      "approx": true
     },
     {
       "id": "imm-128366548",
       "title": "Quadrilocale Ospedale arredato",
       "zone": "Ospedale / Villaggio Manenti",
       "address": "Ospedale - Villaggio Manenti, Reggio Emilia",
-      "lat": 44.6875,
-      "lng": 10.6285,
+      "lat": 44.68545,
+      "lng": 10.6295,
       "price": 800,
       "expenses": 100,
       "mq": 112,
@@ -155,15 +161,16 @@
       "available": "subito",
       "url": "https://www.immobiliare.it/annunci/128366548/",
       "source": "immobiliare.it",
-      "notes": "3 camere, disponibilità immediata"
+      "notes": "3 camere, disponibilità immediata | Pin di zona (indirizzo esatto non in annuncio)",
+      "approx": true
     },
     {
       "id": "imm-132124892",
       "title": "Trilocale Via Frescobaldi 2",
       "zone": "Regina Pacis",
       "address": "Via Girolamo Frescobaldi 2, Reggio Emilia",
-      "lat": 44.6905,
-      "lng": 10.6155,
+      "lat": 44.699176,
+      "lng": 10.6132161,
       "price": 750,
       "expenses": null,
       "mq": 96,
@@ -174,7 +181,8 @@
       "available": null,
       "url": "https://www.immobiliare.it/annunci/132124892/",
       "source": "immobiliare.it",
-      "notes": "Garage + posto auto; zona un filo fuori sud/est"
+      "notes": "Garage + posto auto; zona un filo fuori sud/est",
+      "approx": false
     },
     {
       "id": "idl-36651432",
@@ -192,8 +200,9 @@
       "url": "https://www.idealista.it/immobile/36651432/",
       "source": "idealista.it",
       "notes": "2 matrimoniali + garage",
-      "lat": 44.6955,
-      "lng": 10.6355
+      "lat": 44.6916661,
+      "lng": 10.6366921,
+      "approx": false
     },
     {
       "id": "idl-36647714",
@@ -210,9 +219,10 @@
       "available": null,
       "url": "https://www.idealista.it/immobile/36647714/",
       "source": "idealista.it",
-      "notes": "Box compreso; Idealista",
-      "lat": 44.692,
-      "lng": 10.642
+      "notes": "Box compreso; Idealista | Pin di zona (indirizzo esatto non in annuncio)",
+      "lat": 44.673521,
+      "lng": 10.6382216,
+      "approx": true
     },
     {
       "id": "idl-36366992",
@@ -230,8 +240,9 @@
       "url": "https://www.idealista.it/immobile/36366992/",
       "source": "idealista.it",
       "notes": "2 matrimoniali",
-      "lat": 44.689,
-      "lng": 10.628
+      "lat": 44.6926389,
+      "lng": 10.6252361,
+      "approx": false
     },
     {
       "id": "idl-36694602",
@@ -248,9 +259,10 @@
       "available": null,
       "url": "https://www.idealista.it/immobile/36694602/",
       "source": "idealista.it",
-      "notes": "Idealista",
-      "lat": 44.702,
-      "lng": 10.64
+      "notes": "Idealista | Pin di zona (indirizzo esatto non in annuncio)",
+      "lat": 44.6914982,
+      "lng": 10.6428685,
+      "approx": true
     },
     {
       "id": "idl-36683960",
@@ -267,9 +279,10 @@
       "available": null,
       "url": "https://www.idealista.it/immobile/36683960/",
       "source": "idealista.it",
-      "notes": "Box compreso",
-      "lat": 44.701,
-      "lng": 10.638
+      "notes": "Box compreso | Pin di zona (indirizzo esatto non in annuncio)",
+      "lat": 44.6920605,
+      "lng": 10.6496037,
+      "approx": true
     },
     {
       "id": "idl-36452823",
@@ -287,8 +300,9 @@
       "url": "https://www.idealista.it/immobile/36452823/",
       "source": "idealista.it",
       "notes": "Spese ~2700€/anno (~225/mese)",
-      "lat": 44.6885,
-      "lng": 10.6305
+      "lat": 44.688702,
+      "lng": 10.629392,
+      "approx": false
     },
     {
       "id": "idl-29429241",
@@ -305,9 +319,10 @@
       "available": "subito",
       "url": "https://www.idealista.it/immobile/29429241/",
       "source": "idealista.it",
-      "notes": "Idealista A959",
-      "lat": 44.6875,
-      "lng": 10.6285
+      "notes": "Idealista A959 | Pin di zona (indirizzo esatto non in annuncio)",
+      "lat": 44.6878568,
+      "lng": 10.6255374,
+      "approx": true
     }
   ]
 }
