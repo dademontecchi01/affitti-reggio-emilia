@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T23:38:26+02:00",
+  "updatedAt": "2026-09-07T23:52:52+02:00",
   "criteria": {
     "city": "Reggio Emilia",
     "zones": [
@@ -122,29 +122,9 @@
       "garage": false,
       "available": "subito",
       "url": "https://www.casa.it/immobili/54567874/",
-      "source": "casa.it",
-      "notes": "3 camere + 2 bagni; spese ~225€/mese",
+      "source": "casa.it / idealista.it",
+      "notes": "3 camere + 2 bagni; spese ~225€/mese | Anche su: https://www.idealista.it/immobile/36452823/",
       "approx": false
-    },
-    {
-      "id": "casa-53794043",
-      "title": "A959 vicino Ospedale",
-      "zone": "San Pellegrino / Ospedale",
-      "address": "Zona Ospedale Santa Maria, Reggio Emilia",
-      "lat": 44.6862,
-      "lng": 10.6274,
-      "price": 800,
-      "expenses": 100,
-      "mq": 112,
-      "rooms": 4,
-      "bedrooms": 2,
-      "furnished": true,
-      "garage": false,
-      "available": "subito",
-      "url": "https://www.casa.it/immobili/53794043/",
-      "source": "casa.it",
-      "notes": "2 camere + studio | Pin di zona (indirizzo esatto non in annuncio)",
-      "approx": true
     },
     {
       "id": "imm-128366548",
@@ -162,8 +142,8 @@
       "garage": false,
       "available": "subito",
       "url": "https://www.immobiliare.it/annunci/128366548/",
-      "source": "immobiliare.it",
-      "notes": "3 camere, disponibilità immediata | Pin di zona (indirizzo esatto non in annuncio)",
+      "source": "immobiliare.it / casa.it / idealista.it",
+      "notes": "3 camere, disponibilità immediata | Pin di zona (indirizzo esatto non in annuncio) | Anche su: https://www.casa.it/immobili/53794043/ · https://www.idealista.it/immobile/29429241/",
       "approx": true
     },
     {
@@ -284,46 +264,6 @@
       "notes": "Box compreso | Pin di zona (indirizzo esatto non in annuncio)",
       "lat": 44.6920605,
       "lng": 10.6496037,
-      "approx": true
-    },
-    {
-      "id": "idl-36452823",
-      "title": "Quadrilocale Via Asioli (Idealista)",
-      "zone": "Buon Pastore / Ospedale",
-      "address": "Via Bonifazio Asioli, Reggio Emilia",
-      "price": 890,
-      "expenses": 225,
-      "mq": 135,
-      "rooms": 4,
-      "bedrooms": 3,
-      "furnished": true,
-      "garage": false,
-      "available": "subito",
-      "url": "https://www.idealista.it/immobile/36452823/",
-      "source": "idealista.it",
-      "notes": "Spese ~2700€/anno (~225/mese)",
-      "lat": 44.688702,
-      "lng": 10.629392,
-      "approx": false
-    },
-    {
-      "id": "idl-29429241",
-      "title": "Quadrilocale A959 Buon Pastore",
-      "zone": "Buon Pastore / Ospedale",
-      "address": "Buon Pastore, Reggio Emilia",
-      "price": 800,
-      "expenses": null,
-      "mq": 112,
-      "rooms": 4,
-      "bedrooms": 3,
-      "furnished": true,
-      "garage": false,
-      "available": "subito",
-      "url": "https://www.idealista.it/immobile/29429241/",
-      "source": "idealista.it",
-      "notes": "Idealista A959 | Pin di zona (indirizzo esatto non in annuncio)",
-      "lat": 44.6878568,
-      "lng": 10.6255374,
       "approx": true
     },
     {
