@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Affitti Reggio Emilia — mappa</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --text: #e8eef7;
+      --muted: #9aabbf;
+      --accent: #3d9cf0;
+      --good: #3ecf8e;
+      --warn: #f0b429;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg); color: var(--text); height: 100vh;
+      display: grid; grid-template-columns: 360px 1fr;
+    }
+    aside {
+      background: var(--panel); border-right: 1px solid #2a3548;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    header { padding: 1rem 1.1rem 0.75rem; border-bottom: 1px solid #2a3548; }
+    header h1 { margin: 0 0 0.35rem; font-size: 1.1rem; font-weight: 650; }
+    header p { margin: 0; color: var(--muted); font-size: 0.8rem; line-height: 1.35; }
+    .filters { padding: 0.75rem 1.1rem; display: flex; gap: 0.4rem; flex-wrap: wrap; border-bottom: 1px solid #2a3548; }
+    .chip {
+      border: 1px solid #3a4a63; background: #243044; color: var(--text);
+      border-radius: 999px; padding: 0.25rem 0.65rem; font-size: 0.75rem; cursor: pointer;
+    }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #041018; font-weight: 600; }
+    #list { overflow: auto; flex: 1; padding: 0.5rem; }
+    .card {
+      background: #121a26; border: 1px solid #2a3548; border-radius: 10px;
+      padding: 0.75rem 0.85rem; margin-bottom: 0.5rem; cursor: pointer;
+      transition: border-color .15s;
+    }
+    .card:hover, .card.active { border-color: var(--accent); }
+    .card .price { font-size: 1.05rem; font-weight: 700; color: var(--good); }
+    .card .expenses { color: var(--warn); font-size: 0.78rem; }
+    .card .title { font-weight: 600; margin: 0.25rem 0; }
+    .card .meta { color: var(--muted); font-size: 0.78rem; line-height: 1.4; }
+    .badge {
+      display: inline-block; font-size: 0.68rem; padding: 0.1rem 0.4rem;
+      border-radius: 4px; background: #2a3d2f; color: var(--good); margin-right: 0.25rem;
+    }
+    .badge.warn { background: #3d3420; color: var(--warn); }
+    #map { width: 100%; height: 100%; }
+    a { color: var(--accent); }
+    @media (max-width: 800px) {
+      body { grid-template-columns: 1fr; grid-template-rows: 45% 55%; }
+      aside { border-right: none; border-bottom: 1px solid #2a3548; }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <header>
+      <h1>Affitti Reggio Emilia</h1>
+      <p>Arredati · 2–3 camere + soggiorno · max ~900 € · Reggio Emilia (sud/est + core) · condiviso coi coinquilini<br/>
+      <span id="updated">Aggiornato:</span> 2026-09-07T21:30:40+02:00</p>
+    </header>
+    <div class="filters" id="filters">
+      <button class="chip active" data-filter="all">Tutti</button>
+      <button class="chip" data-filter="garage">Con garage</button>
+      <button class="chip" data-filter="3bed">3 camere</button>
+      <button class="chip" data-filter="under280">≤280 €/testa</button>
+    </div>
+    <div id="list"></div>
+  </aside>
+  <div id="map"></div>
+  <script>
+    let LISTINGS = [];
+async function loadListings() {
+  const res = await fetch('listings.json?t=' + Date.now());
+  if (!res.ok) throw new Error('listings.json');
+  const data = await res.json();
+  LISTINGS = data.listings || data;
+  const meta = document.getElementById('updated');
+  if (meta && data.updatedAt) meta.textContent = 'Aggiornato: ' + data.updatedAt;
+}
+
+
+    const map = L.map("map").setView([44.685, 10.630], 13);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap"
+    }).addTo(map);
+
+    const markers = {};
+    let activeFilter = "all";
+
+    function totalCost(l) {
+      return l.price + (l.expenses || 0);
+    }
+    function perPerson(l) {
+      return Math.round(totalCost(l) / 3);
+    }
+    function matches(l) {
+      if (activeFilter === "garage") return !!l.garage;
+      if (activeFilter === "3bed") return (l.bedrooms || 0) >= 3;
+      if (activeFilter === "under280") return perPerson(l) <= 280;
+      return true;
+    }
+    function popupHtml(l) {
+      const exp = l.expenses != null ? ` + ${l.expenses} spese` : "";
+      const gar = l.garage ? '<span class="badge">Garage</span>' : "";
+      const furn = l.furnished === true || l.furnished === "partial"
+        ? `<span class="badge">${l.furnished === "partial" ? "Parz. arredato" : "Arredato"}</span>` : "";
+      return `<strong>${l.title}</strong><br/>
+        ${l.zone}<br/>
+        <b>${l.price} €/mese</b>${exp} · ~${perPerson(l)} €/testa<br/>
+        ${l.mq || "?"} mq · ${l.bedrooms || "?"} camere<br/>
+        ${gar}${furn}<br/>
+        <a href="${l.url}" target="_blank" rel="noopener">Apri annuncio</a>`;
+    }
+    function render() {
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+      Object.values(markers).forEach(m => map.removeLayer(m));
+      Object.keys(markers).forEach(k => delete markers[k]);
+
+      const shown = LISTINGS.filter(matches);
+      if (!shown.length) {
+        list.innerHTML = '<p style="color:var(--muted);padding:1rem">Nessun annuncio con questo filtro.</p>';
+        return;
+      }
+      const bounds = [];
+      shown.forEach((l, i) => {
+        const marker = L.marker([l.lat, l.lng]).addTo(map).bindPopup(popupHtml(l));
+        markers[l.id] = marker;
+        bounds.push([l.lat, l.lng]);
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.dataset.id = l.id;
+        const exp = l.expenses != null
+          ? `<div class="expenses">+ ${l.expenses} € spese → ~${perPerson(l)} €/testa</div>`
+          : `<div class="meta">~${perPerson(l)} €/testa</div>`;
+        card.innerHTML = `
+          <div class="price">${l.price} €/mese</div>
+          ${exp}
+          <div class="title">${l.title}</div>
+          <div class="meta">${l.zone} · ${l.mq || "?"} mq · ${l.bedrooms || "?"} camere
+            ${l.garage ? '<span class="badge">Garage</span>' : ""}
+            ${l.available ? `<span class="badge warn">${l.available}</span>` : ""}
+          </div>
+          <div class="meta"><a href="${l.url}" target="_blank" rel="noopener">Apri annuncio</a></div>`;
+        card.addEventListener("click", (e) => {
+          if (e.target.tagName === "A") return;
+          document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+          card.classList.add("active");
+          map.setView([l.lat, l.lng], 15);
+          marker.openPopup();
+        });
+        list.appendChild(card);
+      });
+      if (bounds.length) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 });
+    }
+
+    document.getElementById("filters").addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      activeFilter = btn.dataset.filter;
+      render();
+    });
+
+    (async () => {
+      try {
+        await loadListings();
+        render();
+      } catch (err) {
+        document.getElementById("list").innerHTML =
+          '<p style="color:var(--warn);padding:1rem">Errore nel caricamento degli annunci.</p>';
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>
