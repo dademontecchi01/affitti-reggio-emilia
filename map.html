@@ -182,9 +182,9 @@
     }
 
     const map = L.map("map", { zoomControl: true }).setView([44.685, 10.630], 13);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: "&copy; OpenStreetMap &copy; CARTO"
+      attribution: "&copy; OpenStreetMap"
     }).addTo(map);
 
     const markers = {};
