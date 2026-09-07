@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T23:14:41+02:00",
+  "updatedAt": "2026-09-07T23:38:26+02:00",
   "criteria": {
     "city": "Reggio Emilia",
     "zones": [
@@ -14,7 +14,9 @@
       "Crocetta",
       "Mirabello",
       "Ospizio",
-      "Pappagnocca"
+      "Pappagnocca",
+      "Rivalta",
+      "San Rigo"
     ],
     "maxRent": 900,
     "bedrooms": "2-3 + soggiorno",
@@ -323,6 +325,26 @@
       "lat": 44.6878568,
       "lng": 10.6255374,
       "approx": true
+    },
+    {
+      "id": "imm-119735806",
+      "title": "Bilocale Via della Repubblica 65",
+      "zone": "Rivalta / San Rigo",
+      "address": "Via della Repubblica 65, Rivalta, Reggio Emilia",
+      "lat": 44.6585206,
+      "lng": 10.5890576,
+      "approx": false,
+      "price": 800,
+      "expenses": null,
+      "mq": null,
+      "rooms": 2,
+      "bedrooms": 2,
+      "furnished": true,
+      "garage": false,
+      "available": null,
+      "url": "https://www.immobiliare.it/annunci/119735806/",
+      "source": "immobiliare.it",
+      "notes": "Matrimoniale + cameretta (stretto per 3). Unico match Rivalta ≤900 con 2 camere al momento."
     }
   ]
 }
