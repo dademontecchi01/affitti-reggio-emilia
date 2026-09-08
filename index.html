@@ -137,7 +137,7 @@
 
     function listingId(url) {
       if (!url) return "";
-      const m = String(url).match(/(?:annunci|immobile)\/(\d+)/);
+      const m = String(url).match(/(?:annunci|immobili|immobile)\/(\d+)/);
       return m ? m[1] : "";
     }
     function cleanUrl(url) {
