@@ -221,7 +221,7 @@
         const d = item.detail || {};
         const hasPin = d.lat != null && d.lng != null;
         let marker = null;
-        const zoneMissing = d.zoneSpecified === false || !d.zone;
+        const zoneMissing = d.approx === true || d.zoneSpecified === false || !d.zone;
         if (hasPin) {
           marker = L.circleMarker([d.lat, d.lng], zoneMissing ? {
             radius: 9,
