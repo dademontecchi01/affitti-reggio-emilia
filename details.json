@@ -247,5 +247,43 @@
     "lng": 10.6482,
     "approx": true,
     "image": "photos/53356355.jpg"
+  },
+  "54256780": {
+    "title": "Trilocale Porta Castello",
+    "zone": "Porta Castello",
+    "address": "Porta Castello",
+    "price": 700,
+    "expenses": 45,
+    "mq": 61,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "2°",
+    "furnished": true,
+    "garage": null,
+    "elevator": false,
+    "lat": 44.6930996,
+    "lng": 10.6294202,
+    "approx": true,
+    "image": "photos/54256780.jpg"
+  },
+  "54519658": {
+    "title": "Trilocale Circonvallazione Sud",
+    "zone": "Circonvallazione Sud",
+    "address": "Circonvallazione Sud",
+    "price": 950,
+    "expenses": 100,
+    "mq": 94,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 2,
+    "floor": "3°",
+    "furnished": true,
+    "garage": true,
+    "elevator": true,
+    "lat": 44.6865,
+    "lng": 10.6355,
+    "approx": true,
+    "image": "photos/54519658.jpg"
   }
 }
