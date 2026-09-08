@@ -1,0 +1,38 @@
+{
+  "36683960": {
+    "title": "Trilocale Mirabello panoramico",
+    "zone": "Mirabello / Ospizio",
+    "address": "Mirabello-Ospizio",
+    "price": 700,
+    "expenses": 80,
+    "mq": 126,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "5°",
+    "furnished": true,
+    "garage": true,
+    "elevator": true,
+    "lat": 44.6920605,
+    "lng": 10.6496037,
+    "approx": true
+  },
+  "132257644": {
+    "title": "Trilocale Via Ettore Petrolini",
+    "zone": "Rosta Nuova",
+    "address": "Via Ettore Petrolini, Rosta Nuova",
+    "price": 650,
+    "expenses": null,
+    "mq": 86,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": null,
+    "furnished": null,
+    "garage": false,
+    "elevator": null,
+    "lat": 44.6862881,
+    "lng": 10.6445602,
+    "approx": false
+  }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Affitti Reggio Emilia</title>
+  <title>Cerco Casa Avidamente</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
@@ -37,45 +37,10 @@
     }
     header { padding: 28px 24px 16px; }
     header .emoji { font-size: 1.6rem; line-height: 1; margin-bottom: 8px; }
-    header h1 {
-      margin: 0;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    header .sub {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 0.8rem;
-      line-height: 1.4;
-    }
-    .filters {
-      padding: 0 16px 12px;
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .chip {
-      border: none;
-      background: var(--tag);
-      color: var(--text);
-      border-radius: 4px;
-      padding: 4px 10px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .chip:hover { background: var(--hover); }
-    .chip.active {
-      background: var(--blue-bg);
-      color: var(--blue);
-      font-weight: 550;
-    }
-    #count {
-      padding: 0 24px 8px;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+    header h1 { margin: 0; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+    header .sub { margin: 6px 0 0; color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
+    header a { color: var(--blue); text-decoration: none; }
+    #count { padding: 0 24px 8px; font-size: 0.75rem; color: var(--muted); }
     #list { overflow: auto; flex: 1; padding: 0 8px 16px; }
     .row {
       display: grid;
@@ -87,51 +52,51 @@
       border: 1px solid transparent;
     }
     .row:hover { background: var(--hover); }
-    .row.active {
-      background: var(--blue-bg);
-      border-color: #cce4fc;
-    }
-    .row .title {
-      font-size: 0.92rem;
-      font-weight: 550;
-      line-height: 1.3;
-    }
-    .row .meta {
-      grid-column: 1 / -1;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.35;
-    }
-    .row .price {
-      font-size: 0.92rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .row a {
-      color: var(--blue);
-      text-decoration: none;
-      font-size: 0.78rem;
-    }
-    .row a:hover { text-decoration: underline; }
-    .empty {
-      color: var(--muted);
-      padding: 16px 12px;
-      font-size: 0.85rem;
-    }
+    .row.active { background: var(--blue-bg); border-color: #cce4fc; }
+    .row .title { font-size: 0.92rem; font-weight: 550; line-height: 1.3; }
+    .row .meta { grid-column: 1 / -1; color: var(--muted); font-size: 0.78rem; line-height: 1.35; }
+    .row .price { font-size: 0.92rem; font-weight: 600; white-space: nowrap; }
+    .empty { color: var(--muted); padding: 16px 12px; font-size: 0.85rem; }
     #map { width: 100%; height: 100%; background: #f0f0f0; }
     .leaflet-popup-content-wrapper {
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(15, 15, 15, .12);
       font-family: inherit;
+      padding: 0;
     }
-    .leaflet-popup-content {
-      margin: 12px 14px;
-      font-size: 0.85rem;
+    .leaflet-popup-content { margin: 0; width: 280px !important; }
+    .leaflet-popup-tip { box-shadow: none; }
+    .card-pop { padding: 14px 14px 12px; }
+    .card-pop .zone { color: var(--muted); font-size: 0.72rem; margin-bottom: 2px; }
+    .card-pop h2 { margin: 0 0 10px; font-size: 1rem; font-weight: 650; line-height: 1.3; }
+    .facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 10px;
+      margin: 0 0 12px;
+    }
+    .fact {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
       color: var(--text);
-      line-height: 1.4;
     }
-    .leaflet-popup-content a { color: var(--blue); }
-    .leaflet-container a.leaflet-popup-close-button { color: var(--muted); }
+    .fact svg { width: 16px; height: 16px; flex: none; stroke: #55534e; fill: none; stroke-width: 1.7; }
+    .fact span { color: var(--muted); }
+    .open {
+      display: block;
+      text-align: center;
+      background: #222;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .open:hover { background: #000; }
+    .approx { color: var(--muted); font-size: 0.7rem; margin: -6px 0 10px; }
     @media (max-width: 800px) {
       body { grid-template-columns: 1fr; grid-template-rows: 42% 58%; }
       aside { border-right: none; border-bottom: 1px solid var(--border); }
@@ -143,145 +108,167 @@
   <aside>
     <header>
       <div class="emoji">🏠</div>
-      <h1>Affitti RE</h1>
-      <p class="sub">Arredati · max 900 € · 3 persone<br/>Zone: sud/est + Ospizio / Baragalla / Rivalta<br/><span id="updated"></span></p>
+      <h1>Cerco Casa Avidamente</h1>
+      <p class="sub">Solo i link del <a href="https://docs.google.com/spreadsheets/d/1HYXLX9SNe0J6xJBuxV6XUrnqAojN1Qf0iowcfWVIrMM/edit?gid=0#gid=0" target="_blank" rel="noopener">foglio</a><br/><span id="updated"></span></p>
     </header>
-    <div class="filters" id="filters">
-      <button class="chip active" data-filter="all">Tutti</button>
-      <button class="chip" data-filter="garage">Garage</button>
-      <button class="chip" data-filter="3bed">3 camere</button>
-      <button class="chip" data-filter="under280">≤280 €/testa</button>
-    </div>
     <div id="count"></div>
     <div id="list"></div>
   </aside>
   <div id="map"></div>
   <script>
-    let LISTINGS = [];
+    const SHEET_ID = "1HYXLX9SNe0J6xJBuxV6XUrnqAojN1Qf0iowcfWVIrMM";
+    const ICONS = {
+      price: '<svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.5-2-2.5-5-2.5S7 5 7 7.5 9.5 10 12 10s5 1.2 5 3.5S14.5 16 12 16s-5-1-5-2.5"/></svg>',
+      mq: '<svg viewBox="0 0 24 24"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/><path d="M9 12h6"/></svg>',
+      rooms: '<svg viewBox="0 0 24 24"><path d="M4 18V9l8-5 8 5v9"/><path d="M9 18v-5h6v5"/></svg>',
+      baths: '<svg viewBox="0 0 24 24"><path d="M5 11h14v3a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3z"/><path d="M7 11V7a2 2 0 0 1 2-2h1"/></svg>',
+      floor: '<svg viewBox="0 0 24 24"><path d="M7 21V7l10-3v17"/><path d="M7 11h10M7 16h10"/></svg>',
+      furn: '<svg viewBox="0 0 24 24"><path d="M4 13v5M20 13v5M3 13h18v-2a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v2z"/><path d="M6 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/></svg>',
+      garage: '<svg viewBox="0 0 24 24"><path d="M4 20V10l8-5 8 5v10"/><path d="M8 20v-6h8v6"/></svg>'
+    };
 
-    async function loadListings() {
-      const res = await fetch("listings.json?t=" + Date.now());
-      if (!res.ok) throw new Error("listings.json");
-      const data = await res.json();
-      LISTINGS = data.listings || data;
-      const meta = document.getElementById("updated");
-      if (meta && data.updatedAt) {
-        const d = new Date(data.updatedAt);
-        meta.textContent = "Aggiornato " + d.toLocaleString("it-IT", {
-          day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
-        });
-      }
+    function listingId(url) {
+      if (!url) return "";
+      const m = String(url).match(/(?:annunci|immobile)\/(\d+)/);
+      return m ? m[1] : "";
+    }
+    function cleanUrl(url) {
+      return String(url || "").split("#")[0].split("?")[0];
     }
 
-    const map = L.map("map", { zoomControl: true }).setView([44.685, 10.630], 13);
-    // Esri World Light Gray — essenziale, senza API key
+    function loadSheet() {
+      return new Promise((resolve, reject) => {
+        const prev = window.google;
+        window.google = {
+          visualization: {
+            Query: {
+              setResponse(data) {
+                window.google = prev;
+                resolve(data);
+              }
+            }
+          }
+        };
+        const s = document.createElement("script");
+        s.src = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json&gid=0&t=" + Date.now();
+        s.onerror = () => reject(new Error("sheet"));
+        document.head.appendChild(s);
+      });
+    }
+
+    function urlsFromSheet(data) {
+      const rows = (data.table && data.table.rows) || [];
+      const urls = [];
+      for (const row of rows) {
+        const cell = row.c && row.c[0];
+        const v = cell && (cell.v || cell.f);
+        if (!v) continue;
+        const s = String(v).trim();
+        if (/^https?:\/\//i.test(s)) urls.push(s);
+      }
+      return urls;
+    }
+
+    const map = L.map("map", { zoomControl: true }).setView([44.69, 10.63], 12);
     L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
       maxZoom: 16,
       attribution: "Tiles &copy; Esri"
     }).addTo(map);
     L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}", {
-      maxZoom: 16,
-      attribution: ""
+      maxZoom: 16
     }).addTo(map);
 
     const markers = {};
-    let activeFilter = "all";
 
-    function totalCost(l) { return l.price + (l.expenses || 0); }
-    function perPerson(l) { return Math.round(totalCost(l) / 3); }
-    function matches(l) {
-      if (activeFilter === "garage") return !!l.garage;
-      if (activeFilter === "3bed") return (l.bedrooms || 0) >= 3;
-      if (activeFilter === "under280") return perPerson(l) <= 280;
-      return true;
+    function fact(icon, label) {
+      if (label == null || label === "") return "";
+      return `<div class="fact">${icon}<span>${label}</span></div>`;
     }
-    function fmtAvail(a) {
-      if (!a) return "";
-      if (a === "subito") return " · subito";
-      return " · " + a;
-    }
-    function popupHtml(l) {
-      const exp = l.expenses != null ? ` + ${l.expenses} spese` : "";
-      return `<div style="font-weight:600;margin-bottom:4px">${l.title}</div>
-        <div style="color:#787774;margin-bottom:6px">${l.zone}${l.approx ? " · zona approx" : ""}</div>
-        <div><b>${l.price} €</b>${exp} · ~${perPerson(l)} €/testa</div>
-        <div style="color:#787774;margin:4px 0 8px">${l.mq || "?"} mq · ${l.bedrooms || "?"} camere${l.garage ? " · garage" : ""}${fmtAvail(l.available)}</div>
-        <a href="${l.url}" target="_blank" rel="noopener">Apri annuncio →</a>`;
+    function popupHtml(item) {
+      const d = item.detail || {};
+      const title = d.title || "Annuncio";
+      const facts = [
+        fact(ICONS.price, d.price != null ? d.price + " €/mese" : null),
+        fact(ICONS.mq, d.mq ? d.mq + " m²" : null),
+        fact(ICONS.rooms, d.rooms ? d.rooms + " locali" : null),
+        fact(ICONS.baths, d.baths ? d.baths + " bagno" : null),
+        fact(ICONS.floor, d.floor ? d.floor + " piano" : null),
+        fact(ICONS.furn, d.furnished === true ? "Arredato" : d.furnished === false ? "Non arredato" : null),
+        fact(ICONS.garage, d.garage ? "Garage" : null)
+      ].filter(Boolean).join("");
+      return `<div class="card-pop">
+        <div class="zone">${d.zone || "Reggio Emilia"}</div>
+        <h2>${title}</h2>
+        ${d.approx ? '<div class="approx">Posizione di zona</div>' : ""}
+        <div class="facts">${facts || '<div class="fact"><span>Dettagli in arrivo</span></div>'}</div>
+        <a class="open" href="${item.url}" target="_blank" rel="noopener">Apri annuncio</a>
+      </div>`;
     }
 
-    function render() {
+    function render(items) {
       const list = document.getElementById("list");
       list.innerHTML = "";
       Object.values(markers).forEach(m => map.removeLayer(m));
       Object.keys(markers).forEach(k => delete markers[k]);
-
-      const shown = LISTINGS.filter(matches).sort((a, b) => a.price - b.price);
       document.getElementById("count").textContent =
-        shown.length + (shown.length === 1 ? " annuncio" : " annunci");
-
-      if (!shown.length) {
-        list.innerHTML = '<p class="empty">Niente con questo filtro.</p>';
+        items.length + (items.length === 1 ? " casa" : " case");
+      if (!items.length) {
+        list.innerHTML = '<p class="empty">Nessun link nel foglio.</p>';
         return;
       }
-
       const bounds = [];
-      shown.forEach((l) => {
-        const approx = !!l.approx;
-        const marker = L.circleMarker([l.lat, l.lng], {
-          radius: approx ? 9 : 8,
-          color: approx ? "#2383e2" : "#fff",
-          weight: approx ? 2 : 2,
-          dashArray: approx ? "4 3" : null,
-          fillColor: approx ? "#9dc7f0" : "#2383e2",
-          fillOpacity: approx ? 0.85 : 1
-        }).addTo(map).bindPopup(popupHtml(l));
-        markers[l.id] = marker;
-        bounds.push([l.lat, l.lng]);
-
-        const bits = [
-          l.zone,
-          (l.mq ? l.mq + " mq" : null),
-          (l.bedrooms ? l.bedrooms + " camere" : null),
-          l.approx ? "zona approx" : null,
-          l.garage ? "garage" : null,
-          l.expenses != null ? "+" + l.expenses + " spese" : null,
-          "~" + perPerson(l) + " €/testa"
-        ].filter(Boolean);
-
+      items.forEach((item) => {
+        const d = item.detail || {};
+        const hasPin = d.lat != null && d.lng != null;
+        let marker = null;
+        if (hasPin) {
+          marker = L.circleMarker([d.lat, d.lng], {
+            radius: 8,
+            color: "#fff",
+            weight: 2,
+            fillColor: "#2383e2",
+            fillOpacity: 1
+          }).addTo(map).bindPopup(popupHtml(item), { maxWidth: 300, minWidth: 260 });
+          markers[item.id] = marker;
+          bounds.push([d.lat, d.lng]);
+        }
         const row = document.createElement("div");
         row.className = "row";
+        const bits = [d.zone, d.mq ? d.mq + " m²" : null, d.rooms ? d.rooms + " locali" : null, d.garage ? "garage" : null, !hasPin ? "posizione da leggere" : null].filter(Boolean);
         row.innerHTML = `
-          <div class="title">${l.title}</div>
-          <div class="price">${l.price} €</div>
-          <div class="meta">${bits.join(" · ")}${fmtAvail(l.available)} · <a href="${l.url}" target="_blank" rel="noopener">annuncio</a></div>`;
-        row.addEventListener("click", (e) => {
-          if (e.target.tagName === "A") return;
+          <div class="title">${d.title || "Annuncio"}</div>
+          <div class="price">${d.price != null ? d.price + " €" : ""}</div>
+          <div class="meta">${bits.join(" · ") || item.url}</div>`;
+        row.addEventListener("click", () => {
           document.querySelectorAll(".row").forEach(c => c.classList.remove("active"));
           row.classList.add("active");
-          map.setView([l.lat, l.lng], 15);
-          marker.openPopup();
+          if (marker) {
+            map.setView([d.lat, d.lng], 15);
+            marker.openPopup();
+          } else {
+            window.open(item.url, "_blank", "noopener");
+          }
         });
         list.appendChild(row);
       });
-      if (bounds.length) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 });
+      if (bounds.length) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
     }
-
-    document.getElementById("filters").addEventListener("click", (e) => {
-      const btn = e.target.closest(".chip");
-      if (!btn) return;
-      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-      btn.classList.add("active");
-      activeFilter = btn.dataset.filter;
-      render();
-    });
 
     (async () => {
       try {
-        await loadListings();
-        render();
+        const [sheet, detailsRes] = await Promise.all([
+          loadSheet(),
+          fetch("details.json?t=" + Date.now()).then(r => r.ok ? r.json() : {})
+        ]);
+        const urls = urlsFromSheet(sheet);
+        document.getElementById("updated").textContent = "Aggiornato dal foglio · " + urls.length + " link";
+        const items = urls.map((url) => {
+          const id = listingId(url);
+          return { id, url, detail: detailsRes[id] || {} };
+        });
+        render(items);
       } catch (err) {
-        document.getElementById("list").innerHTML =
-          '<p class="empty">Errore nel caricamento.</p>';
+        document.getElementById("list").innerHTML = '<p class="empty">Non riesco a leggere il foglio.</p>';
         console.error(err);
       }
     })();
