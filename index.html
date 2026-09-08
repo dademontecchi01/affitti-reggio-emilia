@@ -119,9 +119,48 @@
     .chip:hover { background: var(--hover); }
     .chip.active { background: var(--blue-bg); color: var(--blue); font-weight: 550; }
     @media (max-width: 800px) {
-      body { grid-template-columns: 1fr; grid-template-rows: 42% 58%; }
-      aside { border-right: none; border-bottom: 1px solid var(--border); }
-      header { padding: 16px 16px 8px; }
+      html, body { height: 100%; height: 100dvh; overflow: hidden; }
+      body {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 1fr);
+      }
+      #map { grid-row: 1; grid-column: 1; min-height: 0; }
+      aside {
+        grid-row: 1;
+        grid-column: 1;
+        align-self: end;
+        z-index: 500;
+        height: min(46dvh, 420px);
+        border-right: none;
+        border-bottom: none;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -8px 28px rgba(15, 15, 15, .12);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      aside::before {
+        content: "";
+        width: 36px;
+        height: 4px;
+        border-radius: 99px;
+        background: #d9d9d6;
+        margin: 8px auto 0;
+        flex: none;
+      }
+      header { padding: 6px 16px 4px; }
+      header .emoji { display: none; }
+      header h1 { font-size: 1.05rem; }
+      header .sub { display: none; }
+      .filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 12px 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .chip { flex: none; padding: 8px 12px; min-height: 36px; }
+      #count { padding: 0 16px 4px; }
+      #list { padding-bottom: 8px; }
+      .leaflet-popup-content { width: min(280px, calc(100vw - 48px)) !important; }
+      .leaflet-control-zoom { margin-top: 12px !important; }
     }
   </style>
 </head>
@@ -199,7 +238,12 @@
       return urls;
     }
 
-    const map = L.map("map", { zoomControl: true }).setView([44.69, 10.63], 12);
+        const map = L.map("map", { zoomControl: true }).setView([44.69, 10.63], 12);
+    window.addEventListener("resize", () => map.invalidateSize());
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      setTimeout(() => map.invalidateSize(), 200);
+    }
+
     L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
       maxZoom: 16,
       attribution: "Tiles &copy; Esri"
@@ -308,7 +352,9 @@
         });
         list.appendChild(row);
       });
-      if (bounds.length) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
+      const mobile = window.matchMedia("(max-width: 800px)").matches;
+      if (bounds.length) map.fitBounds(bounds, { padding: mobile ? [24, 24, 280, 24] : [40, 40], maxZoom: 14 });
+      setTimeout(() => map.invalidateSize(), 50);
     }
 
 
