@@ -197,7 +197,7 @@
         fact(ICONS.garage, d.garage ? "Garage" : null)
       ].filter(Boolean).join("");
       return `<div class="card-pop">
-        <div class="zone">${d.zone || "Reggio Emilia"}</div>
+        <div class="zone">${d.zone || "Zona non indicata"}</div>
         <h2>${title}</h2>
         ${d.approx ? '<div class="approx">Posizione di zona</div>' : ""}
         <div class="facts">${facts || '<div class="fact"><span>Dettagli in arrivo</span></div>'}</div>
@@ -221,8 +221,16 @@
         const d = item.detail || {};
         const hasPin = d.lat != null && d.lng != null;
         let marker = null;
+        const zoneMissing = d.zoneSpecified === false || !d.zone;
         if (hasPin) {
-          marker = L.circleMarker([d.lat, d.lng], {
+          marker = L.circleMarker([d.lat, d.lng], zoneMissing ? {
+            radius: 9,
+            color: "#2383e2",
+            weight: 2,
+            dashArray: "4 3",
+            fillColor: "#9dc7f0",
+            fillOpacity: 0.85
+          } : {
             radius: 8,
             color: "#fff",
             weight: 2,
@@ -261,11 +269,15 @@
           fetch("details.json?t=" + Date.now()).then(r => r.ok ? r.json() : {})
         ]);
         const urls = urlsFromSheet(sheet);
-        document.getElementById("updated").textContent = "Aggiornato dal foglio · " + urls.length + " link";
-        const items = urls.map((url) => {
-          const id = listingId(url);
-          return { id, url, detail: detailsRes[id] || {} };
-        });
+        const seen = new Set();
+        const items = [];
+        for (const url of urls) {
+          const id = listingId(url) || cleanUrl(url);
+          if (!id || seen.has(id)) continue;
+          seen.add(id);
+          items.push({ id, url: cleanUrl(url), detail: detailsRes[id] || {} });
+        }
+        document.getElementById("updated").textContent = "Aggiornato dal foglio · " + items.length + " case";
         render(items);
       } catch (err) {
         document.getElementById("list").innerHTML = '<p class="empty">Non riesco a leggere il foglio.</p>';
