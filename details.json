@@ -209,5 +209,43 @@
     "lng": 10.6428685,
     "approx": true,
     "image": "photos/54650035.jpg"
+  },
+  "53984894": {
+    "title": "Quadrilocale via Goffredo Mameli",
+    "zone": "Ospedale / San Pellegrino",
+    "address": "Via Goffredo Mameli",
+    "price": 1000,
+    "expenses": null,
+    "mq": 77,
+    "rooms": 4,
+    "bedrooms": 3,
+    "baths": 1,
+    "floor": "rialzato",
+    "furnished": true,
+    "garage": null,
+    "elevator": false,
+    "lat": 44.6912767,
+    "lng": 10.6272883,
+    "approx": true,
+    "image": "photos/53984894.jpg"
+  },
+  "53356355": {
+    "title": "Quadrilocale Ospizio",
+    "zone": "Ospizio",
+    "address": "Ospizio",
+    "price": 1000,
+    "expenses": null,
+    "mq": 120,
+    "rooms": 4,
+    "bedrooms": 2,
+    "baths": 2,
+    "floor": "7°",
+    "furnished": true,
+    "garage": true,
+    "elevator": true,
+    "lat": 44.6928,
+    "lng": 10.6482,
+    "approx": true,
+    "image": "photos/53356355.jpg"
   }
 }
