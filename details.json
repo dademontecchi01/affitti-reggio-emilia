@@ -15,7 +15,9 @@
     "elevator": true,
     "lat": 44.6920605,
     "lng": 10.6496037,
-    "approx": true
+    "approx": true,
+    "image": "photos/36683960.jpg",
+    "maxPeople": 3
   },
   "132257644": {
     "title": "Trilocale Via Ettore Petrolini",
@@ -33,7 +35,9 @@
     "elevator": null,
     "lat": 44.6862881,
     "lng": 10.6445602,
-    "approx": false
+    "approx": false,
+    "image": "photos/132257644.jpg",
+    "maxPeople": 2
   },
   "129564290": {
     "title": "Quadrilocale via Bernardino Telesio 16",
@@ -51,7 +55,9 @@
     "elevator": false,
     "lat": 44.6785885,
     "lng": 10.6279395,
-    "approx": false
+    "approx": false,
+    "image": "photos/129564290.jpg",
+    "maxPeople": 1
   },
   "129792124": {
     "title": "Trilocale via Porta Brennone 42",
@@ -69,7 +75,8 @@
     "elevator": false,
     "lat": 44.6952876,
     "lng": 10.6265304,
-    "approx": false
+    "approx": false,
+    "image": "photos/129792124.jpg"
   },
   "132163574": {
     "title": "Trilocale zona San Pietro",
@@ -87,7 +94,8 @@
     "elevator": false,
     "lat": 44.696958,
     "lng": 10.6376266,
-    "approx": true
+    "approx": true,
+    "image": "photos/132163574.jpg"
   },
   "125903239": {
     "title": "Trilocale viale Piave",
@@ -105,7 +113,8 @@
     "elevator": false,
     "lat": 44.7010727,
     "lng": 10.6374308,
-    "approx": true
+    "approx": true,
+    "image": "photos/125903239.jpg"
   },
   "131521134": {
     "title": "Quadrilocale viale Luciano Manara",
@@ -123,7 +132,8 @@
     "elevator": true,
     "lat": 44.6897326,
     "lng": 10.6379762,
-    "approx": true
+    "approx": true,
+    "image": "photos/131521134.jpg"
   },
   "130036382": {
     "title": "Trilocale viale Risorgimento 80",
@@ -141,6 +151,8 @@
     "elevator": true,
     "lat": 44.6835174,
     "lng": 10.6301245,
-    "approx": false
+    "approx": false,
+    "image": "photos/130036382.jpg",
+    "maxPeople": 3
   }
 }
