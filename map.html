@@ -274,7 +274,7 @@
       return `<div class="card-pop">
         ${photo}
         <div class="card-body">
-        <div class="zone">${d.zone || "Zona non indicata"}</div>
+        <div class="zone">${d.available === false ? "Non più in annuncio" : (d.zone || "Zona non indicata")}</div>
         <h2>${title}</h2>
         ${d.approx ? '<div class="approx">Posizione di zona</div>' : ""}
         <div class="facts">${facts || '<div class="fact"><span>Dettagli in arrivo</span></div>'}</div>
@@ -335,7 +335,29 @@
         }
         const row = document.createElement("div");
         row.className = "row";
-        const bits = [d.zone, d.mq ? d.mq + " m²" : null, d.bedrooms ? d.bedrooms + (d.bedrooms === 1 ? " camera" : " camere") : null, d.garage ? "garage" : null, !hasPin ? "posizione da leggere" : null].filter(Boolean);
+                const gone = d.available === false;
+        const zoneMissing = !gone && (d.approx === true || d.zoneSpecified === false || !d.zone);
+        if (hasPin) {
+          marker = L.circleMarker([d.lat, d.lng], gone ? {
+            radius: 8,
+            color: "#fff",
+            weight: 2,
+            fillColor: "#e03131",
+            fillOpacity: 1
+          } : zoneMissing ? {
+            radius: 9,
+            color: "#2383e2",
+            weight: 2,
+            dashArray: "4 3",
+            fillColor: "#9dc7f0",
+            fillOpacity: 0.85
+          } : {
+            radius: 8,
+            color: "#fff",
+            weight: 2,
+            fillColor: "#2383e2",
+            fillOpacity: 1
+          }).addTo(map).bindPopup(popupHtml(item), { maxWidth: 300, minWidth: 260 });
         row.innerHTML = `
           <div class="title">${d.title || "Annuncio"}</div>
           <div class="price">${d.price != null ? d.price + " €" : ""}</div>
