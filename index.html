@@ -105,6 +105,19 @@
     }
     .open:hover { background: #000; }
     .approx { color: var(--muted); font-size: 0.7rem; margin: -6px 0 10px; }
+    .filters { padding: 0 16px 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip {
+      border: none;
+      background: var(--tag);
+      color: var(--text);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .chip:hover { background: var(--hover); }
+    .chip.active { background: var(--blue-bg); color: var(--blue); font-weight: 550; }
     @media (max-width: 800px) {
       body { grid-template-columns: 1fr; grid-template-rows: 42% 58%; }
       aside { border-right: none; border-bottom: 1px solid var(--border); }
@@ -119,6 +132,12 @@
       <h1>Cerco Casa Avidamente</h1>
       <p class="sub">Solo i link del <a href="https://docs.google.com/spreadsheets/d/1HYXLX9SNe0J6xJBuxV6XUrnqAojN1Qf0iowcfWVIrMM/edit?gid=0#gid=0" target="_blank" rel="noopener">foglio</a><br/><span id="updated"></span></p>
     </header>
+    <div class="filters" id="filters">
+      <button class="chip active" data-filter="all">Tutti</button>
+      <button class="chip" data-filter="garage">Garage</button>
+      <button class="chip" data-filter="3bed">3 camere</button>
+      <button class="chip" data-filter="under280">≤280 €/testa</button>
+    </div>
     <div id="count"></div>
     <div id="list"></div>
   </aside>
@@ -220,6 +239,21 @@
       </div>`;
     }
 
+    let allItems = [];
+    let activeFilter = "all";
+
+    function perPerson(item) {
+      const price = item.detail && item.detail.price;
+      return price == null ? Infinity : price / 3;
+    }
+    function matches(item) {
+      const d = item.detail || {};
+      if (activeFilter === "garage") return !!d.garage;
+      if (activeFilter === "3bed") return (d.bedrooms || 0) >= 3;
+      if (activeFilter === "under280") return perPerson(item) <= 280;
+      return true;
+    }
+
     function render(items) {
       const list = document.getElementById("list");
       list.innerHTML = "";
@@ -228,7 +262,7 @@
       document.getElementById("count").textContent =
         items.length + (items.length === 1 ? " casa" : " case");
       if (!items.length) {
-        list.innerHTML = '<p class="empty">Nessun link nel foglio.</p>';
+        list.innerHTML = '<p class="empty">' + (activeFilter === "all" ? "Nessun link nel foglio." : "Niente con questo filtro.") + '</p>';
         return;
       }
       const bounds = [];
@@ -277,6 +311,16 @@
       if (bounds.length) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
     }
 
+
+    document.getElementById("filters").addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      activeFilter = btn.dataset.filter;
+      render(allItems.filter(matches));
+    });
+
     (async () => {
       try {
         const [sheet, detailsRes] = await Promise.all([
@@ -298,7 +342,8 @@
           items.push({ id, url: cleanUrl(url), detail });
         }
         document.getElementById("updated").textContent = "Aggiornato dal foglio · " + items.length + " case";
-        render(items);
+        allItems = items;
+        render(items.filter(matches));
       } catch (err) {
         document.getElementById("list").innerHTML = '<p class="empty">Non riesco a leggere il foglio.</p>';
         console.error(err);
