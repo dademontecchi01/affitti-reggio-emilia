@@ -168,7 +168,10 @@
       const rows = (data.table && data.table.rows) || [];
       const urls = [];
       for (const row of rows) {
-        const cell = row.c && row.c[0];
+        const cells = row.c || [];
+        const note = cells[1] && (cells[1].v || cells[1].f);
+        if (note && String(note).trim()) continue;
+        const cell = cells[0];
         const v = cell && (cell.v || cell.f);
         if (!v) continue;
         const s = String(v).trim();
