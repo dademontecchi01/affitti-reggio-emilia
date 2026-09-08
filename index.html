@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cerco Casa Avidamente</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="vendor/leaflet.css" />
+  <script src="vendor/leaflet.js"></script>
   <style>
     :root {
       --bg: #fff;
@@ -19,7 +19,7 @@
       --tag: #f1f1ef;
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; }
+    html, body { height: 100%; height: 100dvh; margin: 0; }
     body {
       font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       background: var(--page);
@@ -57,7 +57,7 @@
     .row .meta { grid-column: 1 / -1; color: var(--muted); font-size: 0.78rem; line-height: 1.35; }
     .row .price { font-size: 0.92rem; font-weight: 600; white-space: nowrap; }
     .empty { color: var(--muted); padding: 16px 12px; font-size: 0.85rem; }
-    #map { width: 100%; height: 100%; background: #f0f0f0; }
+    #map { width: 100%; height: 100%; min-height: 0; background: #e8e8e6; }
     .leaflet-popup-content-wrapper {
       border-radius: 14px;
       box-shadow: 0 8px 28px rgba(15, 15, 15, .12);
@@ -204,21 +204,29 @@
 
     function loadSheet() {
       return new Promise((resolve, reject) => {
+        let done = false;
+        const finish = (fn, value) => {
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          fn(value);
+        };
         const prev = window.google;
         window.google = {
           visualization: {
             Query: {
               setResponse(data) {
                 window.google = prev;
-                resolve(data);
+                finish(resolve, data);
               }
             }
           }
         };
         const s = document.createElement("script");
         s.src = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json&gid=0&t=" + Date.now();
-        s.onerror = () => reject(new Error("sheet"));
+        s.onerror = () => finish(reject, new Error("sheet"));
         document.head.appendChild(s);
+        const timer = setTimeout(() => finish(reject, new Error("sheet-timeout")), 12000);
       });
     }
 
@@ -244,13 +252,27 @@
       setTimeout(() => map.invalidateSize(), 200);
     }
 
-    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+    const base = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
       maxZoom: 16,
       attribution: "Tiles &copy; Esri"
     }).addTo(map);
-    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}", {
+    const labels = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}", {
       maxZoom: 16
     }).addTo(map);
+    let tileErrors = 0;
+    function useFallbackTiles() {
+      if (map._fallbackTiles) return;
+      map._fallbackTiles = true;
+      map.removeLayer(base);
+      map.removeLayer(labels);
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        maxZoom: 19,
+        subdomains: "abcd",
+        attribution: "&copy; OpenStreetMap &copy; CARTO"
+      }).addTo(map);
+    }
+    base.on("tileerror", () => { if (++tileErrors > 3) useFallbackTiles(); });
+    [0, 250, 800].forEach((ms) => setTimeout(() => map.invalidateSize(), ms));
 
     const markers = {};
 
