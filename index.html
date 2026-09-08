@@ -66,7 +66,15 @@
     }
     .leaflet-popup-content { margin: 0; width: 280px !important; }
     .leaflet-popup-tip { box-shadow: none; }
-    .card-pop { padding: 14px 14px 12px; }
+    .card-pop { padding: 0 0 12px; }
+    .card-photo {
+      width: 100%;
+      height: 156px;
+      object-fit: cover;
+      display: block;
+      background: #efefed;
+    }
+    .card-body { padding: 12px 14px 0; }
     .card-pop .zone { color: var(--muted); font-size: 0.72rem; margin-bottom: 2px; }
     .card-pop h2 { margin: 0 0 10px; font-size: 1rem; font-weight: 650; line-height: 1.3; }
     .facts {
@@ -190,18 +198,22 @@
       const facts = [
         fact(ICONS.price, d.price != null ? d.price + " €/mese" : null),
         fact(ICONS.mq, d.mq ? d.mq + " m²" : null),
-        fact(ICONS.rooms, d.rooms ? d.rooms + " locali" : null),
+        fact(ICONS.rooms, d.bedrooms ? d.bedrooms + (d.bedrooms === 1 ? " camera" : " camere") : null),
         fact(ICONS.baths, d.baths ? d.baths + " bagno" : null),
         fact(ICONS.floor, d.floor ? d.floor + " piano" : null),
         fact(ICONS.furn, d.furnished === true ? "Arredato" : d.furnished === false ? "Non arredato" : null),
         fact(ICONS.garage, d.garage ? "Garage" : null)
       ].filter(Boolean).join("");
+      const photo = d.image ? `<img class="card-photo" src="${d.image}" alt="">` : "";
       return `<div class="card-pop">
+        ${photo}
+        <div class="card-body">
         <div class="zone">${d.zone || "Zona non indicata"}</div>
         <h2>${title}</h2>
         ${d.approx ? '<div class="approx">Posizione di zona</div>' : ""}
         <div class="facts">${facts || '<div class="fact"><span>Dettagli in arrivo</span></div>'}</div>
         <a class="open" href="${item.url}" target="_blank" rel="noopener">Apri annuncio</a>
+        </div>
       </div>`;
     }
 
@@ -242,7 +254,7 @@
         }
         const row = document.createElement("div");
         row.className = "row";
-        const bits = [d.zone, d.mq ? d.mq + " m²" : null, d.rooms ? d.rooms + " locali" : null, d.garage ? "garage" : null, !hasPin ? "posizione da leggere" : null].filter(Boolean);
+        const bits = [d.zone, d.mq ? d.mq + " m²" : null, d.bedrooms ? d.bedrooms + (d.bedrooms === 1 ? " camera" : " camere") : null, d.garage ? "garage" : null, !hasPin ? "posizione da leggere" : null].filter(Boolean);
         row.innerHTML = `
           <div class="title">${d.title || "Annuncio"}</div>
           <div class="price">${d.price != null ? d.price + " €" : ""}</div>
@@ -275,7 +287,12 @@
           const id = listingId(url) || cleanUrl(url);
           if (!id || seen.has(id)) continue;
           seen.add(id);
-          items.push({ id, url: cleanUrl(url), detail: detailsRes[id] || {} });
+          const detail = detailsRes[id] || {};
+          const beds = Number(detail.bedrooms);
+          const people = Number(detail.maxPeople);
+          if (Number.isFinite(beds) && beds < 2) continue;
+          if (Number.isFinite(people) && people <= 2) continue;
+          items.push({ id, url: cleanUrl(url), detail });
         }
         document.getElementById("updated").textContent = "Aggiornato dal foglio · " + items.length + " case";
         render(items);
