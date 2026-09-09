@@ -323,5 +323,24 @@
     "lng": 10.6348843,
     "approx": false,
     "image": "photos/54522144.jpg"
+  },
+  "54699991": {
+    "title": "Trilocale Buco del Signore arredato con garage",
+    "zone": "Buco del Signore-Acque Chiare",
+    "address": "Buco del Signore (rif. 1444)",
+    "price": 800,
+    "expenses": null,
+    "mq": 99,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "1°",
+    "furnished": true,
+    "garage": true,
+    "elevator": true,
+    "lat": 44.6815,
+    "lng": 10.6395,
+    "approx": true,
+    "image": "photos/54699991.jpg"
   }
 }
