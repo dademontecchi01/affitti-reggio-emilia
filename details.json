@@ -285,5 +285,43 @@
     "lng": 10.6355,
     "approx": true,
     "image": "photos/54519658.jpg"
+  },
+  "54675816": {
+    "title": "Trilocale San Maurizio",
+    "zone": "San Maurizio",
+    "address": "San Maurizio",
+    "price": 650,
+    "expenses": null,
+    "mq": 70,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "1°",
+    "furnished": true,
+    "garage": true,
+    "elevator": false,
+    "lat": 44.6846645,
+    "lng": 10.6708481,
+    "approx": true,
+    "image": "photos/54675816.jpg"
+  },
+  "54522144": {
+    "title": "Trilocale Via Ernesto Che Guevara 51",
+    "zone": "Buco del Signore-Acque Chiare",
+    "address": "Via Ernesto Che Guevara 51",
+    "price": 820,
+    "expenses": null,
+    "mq": 91,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "6°",
+    "furnished": true,
+    "garage": false,
+    "elevator": true,
+    "lat": 44.6793923,
+    "lng": 10.6348843,
+    "approx": false,
+    "image": "photos/54522144.jpg"
   }
 }
