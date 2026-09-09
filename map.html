@@ -306,7 +306,7 @@
     }
 
     let allItems = [];
-    let activeFilter = "all";
+    const activeFilters = new Set();
 
     function perPerson(item) {
       const price = item.detail && item.detail.price;
@@ -314,9 +314,9 @@
     }
     function matches(item) {
       const d = item.detail || {};
-      if (activeFilter === "garage") return !!d.garage;
-      if (activeFilter === "3bed") return (d.bedrooms || 0) >= 3;
-      if (activeFilter === "under280") return perPerson(item) <= 280;
+      if (activeFilters.has("garage") && !d.garage) return false;
+      if (activeFilters.has("3bed") && (d.bedrooms || 0) < 3) return false;
+      if (activeFilters.has("under280") && perPerson(item) > 280) return false;
       return true;
     }
 
@@ -338,7 +338,7 @@
       document.getElementById("count").textContent =
         items.length + (items.length === 1 ? " casa" : " case");
       if (!items.length) {
-        list.innerHTML = '<p class="empty">' + (activeFilter === "all" ? "Nessun link nel foglio." : "Niente con questo filtro.") + '</p>';
+        list.innerHTML = '<p class="empty">' + (!activeFilters.size ? "Nessun link nel foglio." : "Niente con questi filtri.") + '</p>';
         return;
       }
       const bounds = [];
@@ -387,9 +387,17 @@
     document.getElementById("filters").addEventListener("click", (e) => {
       const btn = e.target.closest(".chip");
       if (!btn) return;
-      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-      btn.classList.add("active");
-      activeFilter = btn.dataset.filter;
+      const filter = btn.dataset.filter;
+      const chips = document.querySelectorAll(".chip");
+      if (filter === "all") {
+        activeFilters.clear();
+      } else if (activeFilters.has(filter)) {
+        activeFilters.delete(filter);
+      } else {
+        activeFilters.add(filter);
+      }
+      chips.forEach(c => c.classList.toggle("active", activeFilters.has(c.dataset.filter)));
+      document.querySelector('[data-filter="all"]').classList.toggle("active", activeFilters.size === 0);
       render(allItems.filter(matches));
     });
 
