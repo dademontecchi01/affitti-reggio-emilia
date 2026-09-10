@@ -223,27 +223,32 @@
           }
         };
         const s = document.createElement("script");
-        s.src = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json&gid=0&t=" + Date.now();
+        s.src = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json&gid=0&headers=0&t=" + Date.now();
         s.onerror = () => finish(reject, new Error("sheet"));
         document.head.appendChild(s);
         const timer = setTimeout(() => finish(reject, new Error("sheet-timeout")), 12000);
       });
     }
 
-    function urlsFromSheet(data) {
+    function rowsFromSheet(data) {
       const rows = (data.table && data.table.rows) || [];
-      const urls = [];
+      const out = [];
       for (const row of rows) {
         const cells = row.c || [];
-        const note = cells[1] && (cells[1].v || cells[1].f);
-        if (note && String(note).trim()) continue;
+        const noteB = cells[1] && (cells[1].v || cells[1].f);
+        const noteBStr = noteB != null ? String(noteB).trim() : "";
+        // Solo i duplicati restano fuori mappa; le altre note in B sono di Davide.
+        if (/^Duplicato\b/i.test(noteBStr)) continue;
         const cell = cells[0];
         const v = cell && (cell.v || cell.f);
         if (!v) continue;
         const s = String(v).trim();
-        if (/^https?:\/\//i.test(s)) urls.push(s);
+        if (!/^https?:\/\//i.test(s)) continue;
+        const noteC = cells[2] && (cells[2].v || cells[2].f);
+        const noteCStr = noteC != null ? String(noteC).trim() : "";
+        out.push({ url: s, noteB: noteBStr, noteC: noteCStr });
       }
-      return urls;
+      return out;
     }
 
         const map = L.map("map", { zoomControl: true }).setView([44.69, 10.63], 12);
@@ -285,7 +290,7 @@
       const title = d.title || "Annuncio";
       const facts = [
         fact(ICONS.price, d.price != null ? d.price + " €/mese" : null),
-        fact(ICONS.price, d.expenses != null ? d.expenses + " € spese/consumi" : "Spese/consumi: non indicate"),
+        fact(ICONS.price, d.sheetExpenses ? ("Spese/consumi: " + d.sheetExpenses) : (d.expenses != null ? d.expenses + " € spese/consumi" : "Spese/consumi: non indicate")),
         fact(ICONS.mq, d.mq ? d.mq + " m²" : null),
         fact(ICONS.rooms, d.bedrooms ? d.bedrooms + (d.bedrooms === 1 ? " camera" : " camere") : null),
         fact(ICONS.baths, d.baths ? d.baths + " bagno" : null),
@@ -365,8 +370,8 @@
         ].filter(Boolean);
         row.innerHTML = `
           <div class="title">${d.title || "Annuncio"}</div>
-          <div class="price">${d.price != null ? (d.expenses != null ? d.price + " € + " + d.expenses + " € spese" : d.price + " €") : ""}</div>
-          <div class="meta">${[...(bits), d.price != null && d.expenses == null ? "spese/consumi non indicate" : null].filter(Boolean).join(" · ") || item.url}</div>`;
+          <div class="price">${d.price != null ? d.price + " €" : ""}</div>
+          <div class="meta">${[...(bits), d.sheetExpenses ? ("spese/consumi: " + d.sheetExpenses) : (d.expenses != null ? d.expenses + " € spese/consumi" : (d.price != null ? "spese/consumi non indicate" : null))].filter(Boolean).join(" · ") || item.url}</div>`;
         row.addEventListener("click", () => {
           document.querySelectorAll(".row").forEach(c => c.classList.remove("active"));
           row.classList.add("active");
@@ -408,14 +413,17 @@
           loadSheet(),
           fetch("details.json?t=" + Date.now()).then(r => r.ok ? r.json() : {})
         ]);
-        const urls = urlsFromSheet(sheet);
+        const sheetRows = rowsFromSheet(sheet);
         const seen = new Set();
         const items = [];
-        for (const url of urls) {
+        for (const row of sheetRows) {
+          const url = row.url;
           const id = listingId(url) || cleanUrl(url);
           if (!id || seen.has(id)) continue;
           seen.add(id);
-          const detail = detailsRes[id] || {};
+          const detail = Object.assign({}, detailsRes[id] || {});
+          if (row.noteC) detail.sheetExpenses = row.noteC;
+          if (row.noteB) detail.sheetNote = row.noteB;
           const beds = Number(detail.bedrooms);
           const people = Number(detail.maxPeople);
           if (Number.isFinite(beds) && beds < 2) continue;
