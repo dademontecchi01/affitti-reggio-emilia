@@ -322,12 +322,16 @@
       render(allItems.filter(matches));
       if (!LIKES_API_URL || LIKES_API_URL.indexOf("PLACEHOLDER") >= 0) return;
       try {
-        await fetch(LIKES_API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({ id: String(id), person: currentPerson, like: !!like })
-        });
-        await fetchLikes();
+        const q = "?id=" + encodeURIComponent(String(id))
+          + "&person=" + encodeURIComponent(currentPerson)
+          + "&like=" + (like ? "1" : "0")
+          + "&t=" + Date.now();
+        const res = await fetch(LIKES_API_URL + q);
+        const data = await res.json();
+        if (data && data.likes) {
+          likesById = data.likes;
+          localStorage.setItem("affitti-re-likes-cache", JSON.stringify(likesById));
+        }
         render(allItems.filter(matches));
       } catch (err) {
         console.warn("likes save", err);

@@ -33,7 +33,28 @@ function readLikes_() {
   return likes;
 }
 
-function doGet() {
+function applyLike_(id, person, like) {
+  if (!id || PEOPLE.indexOf(person) < 0) return false;
+  var sh = likesSheet_();
+  var values = sh.getDataRange().getValues();
+  var found = -1;
+  for (var i = 1; i < values.length; i++) {
+    if (String(values[i][0]) === id && String(values[i][1]) === person) {
+      found = i + 1;
+      break;
+    }
+  }
+  if (like && found < 0) sh.appendRow([id, person, new Date().toISOString()]);
+  else if (!like && found > 0) sh.deleteRow(found);
+  return true;
+}
+
+function doGet(e) {
+  e = e || {};
+  var p = e.parameter || {};
+  if (p.id && p.person) {
+    applyLike_(String(p.id).trim(), String(p.person).trim(), String(p.like) === "1" || String(p.like) === "true");
+  }
   return ContentService
     .createTextOutput(JSON.stringify({ likes: readLikes_() }))
     .setMimeType(ContentService.MimeType.JSON);
