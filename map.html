@@ -235,6 +235,22 @@
     }
     .row-like.on { color: #e03131; }
     .row { grid-template-columns: 1fr auto auto; }
+
+    .pin-heart-wrap { background: transparent !important; border: none !important; }
+    .pin-heart {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #e03131;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      line-height: 1;
+      box-shadow: 0 1px 4px rgba(15, 15, 15, .28);
+      border: 2px solid #fff;
+    }
   </style>
 </head>
 <body>
@@ -529,6 +545,23 @@
       }
       return { radius: 8, color: "#fff", weight: 2, fillColor: "#2383e2", fillOpacity: 1 };
     }
+    function hasLikes(id) {
+      return likersOf(id).length > 0;
+    }
+    function makeMarker(item, d) {
+      const latlng = [d.lat, d.lng];
+      if (hasLikes(item.id)) {
+        const icon = L.divIcon({
+          className: "pin-heart-wrap",
+          html: '<div class="pin-heart">♥</div>',
+          iconSize: [28, 28],
+          iconAnchor: [14, 14],
+          popupAnchor: [0, -14]
+        });
+        return L.marker(latlng, { icon, zIndexOffset: 200 });
+      }
+      return L.circleMarker(latlng, pinStyle(d));
+    }
 
     function render(items) {
       const list = document.getElementById("list");
@@ -547,7 +580,7 @@
         const hasPin = d.lat != null && d.lng != null;
         let marker = null;
         if (hasPin) {
-          marker = L.circleMarker([d.lat, d.lng], pinStyle(d))
+          marker = makeMarker(item, d)
             .addTo(map)
             .bindPopup(popupHtml(item), { maxWidth: 300, minWidth: 260 });
           marker.on("popupopen", () => {
