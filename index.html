@@ -238,18 +238,20 @@
 
     .pin-heart-wrap { background: transparent !important; border: none !important; }
     .pin-heart {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background: #e03131;
-      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
-      line-height: 1;
       box-shadow: 0 1px 4px rgba(15, 15, 15, .28);
       border: 2px solid #fff;
+    }
+    .pin-heart svg {
+      width: 16px;
+      height: 14px;
+      display: block;
     }
   </style>
 </head>
@@ -553,9 +555,9 @@
       if (hasLikes(item.id)) {
         const icon = L.divIcon({
           className: "pin-heart-wrap",
-          html: '<div class="pin-heart">♥</div>',
-          iconSize: [28, 28],
-          iconAnchor: [14, 14],
+          html: '<div class="pin-heart"><svg viewBox="0 0 24 20" aria-hidden="true"><path fill="#fff" d="M12 18.4S2.5 12.2 2.5 7.2C2.5 4.3 4.7 2.2 7.5 2.2c1.7 0 3.2.9 4.5 2.4C13.3 3.1 14.8 2.2 16.5 2.2c2.8 0 5 2.1 5 5 0 5-9.5 11.2-9.5 11.2z"/></svg></div>',
+          iconSize: [30, 30],
+          iconAnchor: [15, 15],
           popupAnchor: [0, -14]
         });
         return L.marker(latlng, { icon, zIndexOffset: 200 });
