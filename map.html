@@ -285,6 +285,7 @@
       const title = d.title || "Annuncio";
       const facts = [
         fact(ICONS.price, d.price != null ? d.price + " €/mese" : null),
+        fact(ICONS.price, d.expenses != null ? d.expenses + " € spese/consumi" : "Spese/consumi: non indicate"),
         fact(ICONS.mq, d.mq ? d.mq + " m²" : null),
         fact(ICONS.rooms, d.bedrooms ? d.bedrooms + (d.bedrooms === 1 ? " camera" : " camere") : null),
         fact(ICONS.baths, d.baths ? d.baths + " bagno" : null),
@@ -364,8 +365,8 @@
         ].filter(Boolean);
         row.innerHTML = `
           <div class="title">${d.title || "Annuncio"}</div>
-          <div class="price">${d.price != null ? d.price + " €" : ""}</div>
-          <div class="meta">${bits.join(" · ") || item.url}</div>`;
+          <div class="price">${d.price != null ? (d.expenses != null ? d.price + " € + " + d.expenses + " € spese" : d.price + " €") : ""}</div>
+          <div class="meta">${[...(bits), d.price != null && d.expenses == null ? "spese/consumi non indicate" : null].filter(Boolean).join(" · ") || item.url}</div>`;
         row.addEventListener("click", () => {
           document.querySelectorAll(".row").forEach(c => c.classList.remove("active"));
           row.classList.add("active");
