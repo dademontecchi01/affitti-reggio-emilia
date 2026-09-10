@@ -260,6 +260,13 @@
     .row-like { color: #c4c3bf; }
     .row-like.on { color: #e03131; }
     .like-btn .heart { display: inline-flex; align-items: center; }
+
+    .row.gone { opacity: 0.72; }
+    .row.gone .title,
+    .row.gone .price,
+    .row.gone .meta { color: #9a9a97; }
+    .row.gone .row-like { color: #c4c3bf; }
+    .row.gone .row-like.on { color: #c9a0a4; }
   </style>
 </head>
 <body>
@@ -607,7 +614,7 @@
           bounds.push([d.lat, d.lng]);
         }
         const row = document.createElement("div");
-        row.className = "row";
+        row.className = "row" + (d.available === false ? " gone" : "");
         const bits = [
           d.available === false ? "non più in annuncio" : d.zone,
           d.mq ? d.mq + " m²" : null,
