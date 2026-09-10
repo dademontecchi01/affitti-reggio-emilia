@@ -254,6 +254,12 @@
       font-size: 13px;
       line-height: 1;
     }
+
+    .card-photo.gone { filter: grayscale(1); opacity: 0.9; }
+    .like-btn i, .row-like i { font-size: 0.95em; }
+    .row-like { color: #c4c3bf; }
+    .row-like.on { color: #e03131; }
+    .like-btn .heart { display: inline-flex; align-items: center; }
   </style>
 </head>
 <body>
@@ -506,7 +512,7 @@
         fact(ICONS.furn, d.furnished === true ? "Arredato" : d.furnished === false ? "Non arredato" : null),
         fact(ICONS.garage, d.garage ? "Garage" : null)
       ].filter(Boolean).join("");
-      const photo = d.image ? `<img class="card-photo" src="${d.image}" alt="">` : "";
+      const photo = d.image ? `<img class="card-photo${d.available === false ? " gone" : ""}" src="${d.image}" alt="">` : "";
       return `<div class="card-pop">
         ${photo}
         <div class="card-body">
@@ -516,7 +522,7 @@
         <div class="facts">${facts || '<div class="fact"><span>Dettagli in arrivo</span></div>'}</div>
         <div class="likes-line">${likesLabel(item.id)}</div>
         <button type="button" class="like-btn${iLiked(item.id) ? " on" : ""}" data-like-id="${item.id}">
-          <span class="heart">${iLiked(item.id) ? "♥" : "♡"}</span>
+          <span class="heart"><i class="fa-${iLiked(item.id) ? "solid" : "regular"} fa-heart" aria-hidden="true"></i></span>
           ${iLiked(item.id) ? "Ti piace" : "Mi piace"}
         </button>
         <a class="open" href="${item.url}" target="_blank" rel="noopener">Apri annuncio</a>
@@ -613,7 +619,7 @@
         const likeText = likesLabel(item.id);
         row.innerHTML = `
           <div class="title">${d.title || "Annuncio"}</div>
-          <button type="button" class="row-like${liked ? " on" : ""}" data-like-id="${item.id}" aria-label="Mi piace">${liked ? "♥" : "♡"}</button>
+          <button type="button" class="row-like${liked ? " on" : ""}" data-like-id="${item.id}" aria-label="Mi piace"><i class="fa-${liked ? "solid" : "regular"} fa-heart" aria-hidden="true"></i></button>
           <div class="price">${d.price != null ? d.price + " €" : ""}</div>
           <div class="meta">${[...(bits), d.sheetExpenses ? ("spese/consumi: " + d.sheetExpenses) : (d.expenses != null ? d.expenses + " € spese/consumi" : (d.price != null ? "spese/consumi non indicate" : null)), likeText || null].filter(Boolean).join(" · ") || item.url}</div>`;
         row.querySelector(".row-like").addEventListener("click", (ev) => {
