@@ -162,9 +162,94 @@
       .leaflet-popup-content { width: min(280px, calc(100vw - 48px)) !important; }
       .leaflet-control-zoom { margin-top: 12px !important; }
     }
+
+    #who-gate {
+      position: fixed; inset: 0; z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(247, 246, 243, 0.92);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 24px;
+    }
+    #who-gate[hidden] { display: none !important; }
+    .who-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px 22px;
+      width: min(360px, 100%);
+      box-shadow: 0 16px 40px rgba(15,15,15,.08);
+      text-align: center;
+    }
+    .who-card h2 { margin: 0 0 6px; font-size: 1.35rem; letter-spacing: -0.02em; }
+    .who-card p { margin: 0 0 18px; color: var(--muted); font-size: 0.9rem; }
+    .who-choices { display: grid; gap: 10px; }
+    .who-btn {
+      border: 1px solid var(--border);
+      background: var(--page);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font: inherit;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .who-btn:hover { background: var(--blue-bg); border-color: #cce4fc; color: var(--blue); }
+    .who-me {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 10px; font-size: 0.78rem; color: var(--muted);
+    }
+    .who-me button {
+      border: none; background: transparent; color: var(--blue);
+      font: inherit; font-size: inherit; cursor: pointer; padding: 0;
+      text-decoration: underline;
+    }
+    .likes-line {
+      grid-column: 1 / -1;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+      min-height: 1.1em;
+    }
+    .like-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    .like-btn.on { background: #ffe8ec; border-color: #ffc9d1; color: #e03131; }
+    .like-btn .heart { font-size: 1rem; line-height: 1; }
+    .row-like {
+      border: none; background: transparent; cursor: pointer;
+      font-size: 1rem; padding: 0 2px; line-height: 1;
+      color: #c4c3bf;
+    }
+    .row-like.on { color: #e03131; }
+    .row { grid-template-columns: 1fr auto auto; }
   </style>
 </head>
 <body>
+
+  <div id="who-gate" hidden>
+    <div class="who-card">
+      <h2>Ciao! Chi sei?</h2>
+      <p>Così puoi mettere like alle case e vedere cosa piace agli altri.</p>
+      <div class="who-choices">
+        <button type="button" class="who-btn" data-person="Bonni">Bonni</button>
+        <button type="button" class="who-btn" data-person="Ciccio">Ciccio</button>
+        <button type="button" class="who-btn" data-person="Dade">Dade</button>
+      </div>
+    </div>
+  </div>
   <aside>
     <header>
       <div class="emoji">🏠</div>
@@ -183,6 +268,106 @@
   <div id="map"></div>
   <script>
     const SHEET_ID = "1HYXLX9SNe0J6xJBuxV6XUrnqAojN1Qf0iowcfWVIrMM";
+
+    const PEOPLE = ["Bonni", "Ciccio", "Dade"];
+    const PERSON_KEY = "affitti-re-person";
+    // Google Apps Script web app (Anyone). Updated after deploy.
+    const LIKES_API_URL = "LIKES_API_URL_PLACEHOLDER";
+    let currentPerson = localStorage.getItem(PERSON_KEY) || "";
+    // likesById: { [listingId]: ["Bonni", "Dade"] }
+    let likesById = {};
+
+    function likersOf(id) {
+      return (likesById[id] || []).slice().sort((a, b) => PEOPLE.indexOf(a) - PEOPLE.indexOf(b));
+    }
+    function likesLabel(id) {
+      const names = likersOf(id);
+      if (!names.length) return "";
+      if (names.length === 1) return "Piace a " + names[0];
+      if (names.length === 2) return "Piace a " + names[0] + " e " + names[1];
+      return "Piace a " + names.slice(0, -1).join(", ") + " e " + names[names.length - 1];
+    }
+    function iLiked(id) {
+      return !!currentPerson && likersOf(id).includes(currentPerson);
+    }
+
+    async function fetchLikes() {
+      if (!LIKES_API_URL || LIKES_API_URL.indexOf("PLACEHOLDER") >= 0) {
+        try {
+          const raw = localStorage.getItem("affitti-re-likes-cache");
+          likesById = raw ? JSON.parse(raw) : {};
+        } catch (_) { likesById = {}; }
+        return;
+      }
+      try {
+        const res = await fetch(LIKES_API_URL + "?t=" + Date.now());
+        const data = await res.json();
+        likesById = data.likes || {};
+        localStorage.setItem("affitti-re-likes-cache", JSON.stringify(likesById));
+      } catch (err) {
+        console.warn("likes fetch", err);
+        try {
+          const raw = localStorage.getItem("affitti-re-likes-cache");
+          likesById = raw ? JSON.parse(raw) : {};
+        } catch (_) { likesById = {}; }
+      }
+    }
+
+    async function setLike(id, like) {
+      if (!currentPerson) return;
+      const set = new Set(likersOf(id));
+      if (like) set.add(currentPerson); else set.delete(currentPerson);
+      likesById[id] = Array.from(set);
+      localStorage.setItem("affitti-re-likes-cache", JSON.stringify(likesById));
+      render(allItems.filter(matches));
+      if (!LIKES_API_URL || LIKES_API_URL.indexOf("PLACEHOLDER") >= 0) return;
+      try {
+        await fetch(LIKES_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ id: String(id), person: currentPerson, like: !!like })
+        });
+        await fetchLikes();
+        render(allItems.filter(matches));
+      } catch (err) {
+        console.warn("likes save", err);
+      }
+    }
+
+    function showGate(force) {
+      const gate = document.getElementById("who-gate");
+      if (!force && currentPerson && PEOPLE.includes(currentPerson)) {
+        gate.hidden = true;
+        updateWhoMe();
+        return false;
+      }
+      gate.hidden = false;
+      return true;
+    }
+    function updateWhoMe() {
+      let el = document.getElementById("who-me");
+      if (!el) {
+        el = document.createElement("div");
+        el.id = "who-me";
+        el.className = "who-me";
+        const header = document.querySelector("aside header");
+        if (header) header.appendChild(el);
+      }
+      if (!currentPerson) { el.textContent = ""; return; }
+      el.innerHTML = "Sei <strong>" + currentPerson + "</strong> · <button type=\"button\" id=\"who-change\">Cambia</button>";
+      const btn = document.getElementById("who-change");
+      if (btn) btn.onclick = () => showGate(true);
+    }
+    document.getElementById("who-gate").addEventListener("click", (e) => {
+      const btn = e.target.closest(".who-btn");
+      if (!btn) return;
+      currentPerson = btn.dataset.person;
+      localStorage.setItem(PERSON_KEY, currentPerson);
+      document.getElementById("who-gate").hidden = true;
+      updateWhoMe();
+      render(allItems.filter(matches));
+    });
+
     const ICONS = {
       price: '<svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.5-2-2.5-5-2.5S7 5 7 7.5 9.5 10 12 10s5 1.2 5 3.5S14.5 16 12 16s-5-1-5-2.5"/></svg>',
       mq: '<svg viewBox="0 0 24 24"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/><path d="M9 12h6"/></svg>',
@@ -306,6 +491,11 @@
         <h2>${title}</h2>
         ${d.approx ? '<div class="approx">Posizione di zona</div>' : ""}
         <div class="facts">${facts || '<div class="fact"><span>Dettagli in arrivo</span></div>'}</div>
+        <div class="likes-line">${likesLabel(item.id)}</div>
+        <button type="button" class="like-btn${iLiked(item.id) ? " on" : ""}" data-like-id="${item.id}">
+          <span class="heart">${iLiked(item.id) ? "♥" : "♡"}</span>
+          ${iLiked(item.id) ? "Ti piace" : "Mi piace"}
+        </button>
         <a class="open" href="${item.url}" target="_blank" rel="noopener">Apri annuncio</a>
         </div>
       </div>`;
@@ -356,6 +546,14 @@
           marker = L.circleMarker([d.lat, d.lng], pinStyle(d))
             .addTo(map)
             .bindPopup(popupHtml(item), { maxWidth: 300, minWidth: 260 });
+          marker.on("popupopen", () => {
+            const btn = document.querySelector('.like-btn[data-like-id="' + item.id + '"]');
+            if (btn) btn.onclick = (ev) => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              setLike(item.id, !iLiked(item.id));
+            };
+          });
           markers[item.id] = marker;
           bounds.push([d.lat, d.lng]);
         }
@@ -368,10 +566,18 @@
           d.garage ? "garage" : null,
           !hasPin ? "posizione da leggere" : null
         ].filter(Boolean);
+        const liked = iLiked(item.id);
+        const likeText = likesLabel(item.id);
         row.innerHTML = `
           <div class="title">${d.title || "Annuncio"}</div>
+          <button type="button" class="row-like${liked ? " on" : ""}" data-like-id="${item.id}" aria-label="Mi piace">${liked ? "♥" : "♡"}</button>
           <div class="price">${d.price != null ? d.price + " €" : ""}</div>
-          <div class="meta">${[...(bits), d.sheetExpenses ? ("spese/consumi: " + d.sheetExpenses) : (d.expenses != null ? d.expenses + " € spese/consumi" : (d.price != null ? "spese/consumi non indicate" : null))].filter(Boolean).join(" · ") || item.url}</div>`;
+          <div class="meta">${[...(bits), d.sheetExpenses ? ("spese/consumi: " + d.sheetExpenses) : (d.expenses != null ? d.expenses + " € spese/consumi" : (d.price != null ? "spese/consumi non indicate" : null)), likeText || null].filter(Boolean).join(" · ") || item.url}</div>`;
+        row.querySelector(".row-like").addEventListener("click", (ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          setLike(item.id, !iLiked(item.id));
+        });
         row.addEventListener("click", () => {
           document.querySelectorAll(".row").forEach(c => c.classList.remove("active"));
           row.classList.add("active");
@@ -407,11 +613,13 @@
       render(allItems.filter(matches));
     });
 
+    showGate(false);
     (async () => {
       try {
         const [sheet, detailsRes] = await Promise.all([
           loadSheet(),
-          fetch("details.json?t=" + Date.now()).then(r => r.ok ? r.json() : {})
+          fetch("details.json?t=" + Date.now()).then(r => r.ok ? r.json() : {}),
+          fetchLikes()
         ]);
         const sheetRows = rowsFromSheet(sheet);
         const seen = new Set();
