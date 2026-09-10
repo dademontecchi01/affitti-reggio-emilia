@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cerco Casa Avidamente</title>
   <link rel="stylesheet" href="vendor/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="vendor/leaflet.js"></script>
   <style>
     :root {
@@ -248,10 +249,10 @@
       box-shadow: 0 1px 4px rgba(15, 15, 15, .28);
       border: 2px solid #fff;
     }
-    .pin-heart svg {
-      width: 16px;
-      height: 14px;
-      display: block;
+    .pin-heart i {
+      color: #fff;
+      font-size: 13px;
+      line-height: 1;
     }
   </style>
 </head>
@@ -540,7 +541,7 @@
 
     function pinStyle(d) {
       if (d.available === false) {
-        return { radius: 8, color: "#fff", weight: 2, fillColor: "#e03131", fillOpacity: 1 };
+        return { radius: 8, color: "#fff", weight: 2, fillColor: "#9a9a97", fillOpacity: 1 };
       }
       if (d.approx === true || d.zoneSpecified === false || !d.zone) {
         return { radius: 9, color: "#2383e2", weight: 2, dashArray: "4 3", fillColor: "#9dc7f0", fillOpacity: 0.85 };
@@ -552,10 +553,13 @@
     }
     function makeMarker(item, d) {
       const latlng = [d.lat, d.lng];
+      if (d.available === false) {
+        return L.circleMarker(latlng, pinStyle(d));
+      }
       if (hasLikes(item.id)) {
         const icon = L.divIcon({
           className: "pin-heart-wrap",
-          html: '<div class="pin-heart"><svg viewBox="0 0 24 20" aria-hidden="true"><path fill="#fff" d="M12 18.4S2.5 12.2 2.5 7.2C2.5 4.3 4.7 2.2 7.5 2.2c1.7 0 3.2.9 4.5 2.4C13.3 3.1 14.8 2.2 16.5 2.2c2.8 0 5 2.1 5 5 0 5-9.5 11.2-9.5 11.2z"/></svg></div>',
+          html: '<div class="pin-heart"><i class="fa-solid fa-heart" aria-hidden="true"></i></div>',
           iconSize: [30, 30],
           iconAnchor: [15, 15],
           popupAnchor: [0, -14]
