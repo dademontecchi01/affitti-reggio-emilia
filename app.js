@@ -190,9 +190,9 @@ function toggleLike(id){
 }
 function reset(){state.filters.clear();state.query='';state.max=0;state.furnished=false;state.available=false;$('query').value='';render();}
 function updatePerson(){ $('person-label').textContent=person;$('avatar').textContent=person[0];$('profile').setAttribute('aria-label',`Profilo ${person}: cambia persona`);}
-function mapTileUrl(){return 'https://{s}.basemaps.cartocdn.com/'+(document.documentElement.dataset.theme==='dark'?'dark_all':'light_all')+'/{z}/{x}/{y}{r}.png';}
-function updateThemeControl(){const dark=document.documentElement.dataset.theme==='dark';$('theme-toggle').setAttribute('aria-checked',String(dark));$('theme-toggle').title=dark?'Passa al tema chiaro':'Passa al tema scuro';document.querySelector('meta[name="theme-color"]').content=dark?'#111c2d':'#ffffff';}
-function applyTheme(theme){document.documentElement.dataset.theme=theme;updateThemeControl();mapTiles?.setUrl(mapTileUrl());}
+function mapTileUrl(){return 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';}
+function updateThemeControl(){document.documentElement.dataset.theme='light';const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content='#ffffff';}
+function applyTheme(){document.documentElement.dataset.theme='light';updateThemeControl();mapTiles?.setUrl(mapTileUrl());}
 function showUpdatedAt(iso){
  const el=$('updated-at');
  if(!iso){el.textContent='dal foglio live';el.removeAttribute('datetime');return;}
@@ -292,8 +292,6 @@ function buildItems(sheetRows,details){
 function bindUi(){
  if(booted)return;
  booted=true;
- $('theme-toggle').onclick=()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';applyTheme(theme);try{localStorage.setItem('cca-local-theme',theme);}catch{toast('Tema applicato per questa sessione.');}};
- matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{let saved;try{saved=localStorage.getItem('cca-local-theme');}catch{}if(saved!=='light'&&saved!=='dark')applyTheme(e.matches?'dark':'light');});
  document.addEventListener('click',e=>{
   const like=e.target.closest('[data-like]');if(like){toggleLike(like.dataset.like);return;}
   const open=e.target.closest('[data-detail]');if(open){const d=items.find(x=>x.id===open.dataset.detail);if(d)detail(d);return;}
