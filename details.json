@@ -365,5 +365,25 @@
     "lng": 10.6150031,
     "approx": false,
     "image": "photos/36760055.jpg"
+  },
+  "54704500": {
+    "title": "Quadrilocale Via Maria Melato",
+    "zone": "Mirabello / Ospizio (zona Piscina)",
+    "address": "Via Maria Melato, Mirabello-Stazione",
+    "price": 1000,
+    "expenses": null,
+    "mq": 130,
+    "rooms": 6,
+    "bedrooms": 3,
+    "baths": 2,
+    "floor": "2°",
+    "furnished": true,
+    "garage": true,
+    "elevator": true,
+    "lat": 44.6895779,
+    "lng": 10.6453375,
+    "approx": true,
+    "image": "photos/54704500.jpg",
+    "available": true
   }
 }
