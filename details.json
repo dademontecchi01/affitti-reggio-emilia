@@ -95,7 +95,8 @@
     "lng": 10.6376266,
     "approx": true,
     "image": "photos/132163574.jpg",
-    "available": false
+    "available": false,
+    "delistedAt": "2026-09-10T19:00:00+02:00"
   },
   "125903239": {
     "title": "Trilocale viale Piave",
@@ -305,7 +306,8 @@
     "lng": 10.6708481,
     "approx": true,
     "image": "photos/54675816.jpg",
-    "available": false
+    "available": false,
+    "delistedAt": "2026-09-10T19:00:00+02:00"
   },
   "54522144": {
     "title": "Trilocale Via Ernesto Che Guevara 51",

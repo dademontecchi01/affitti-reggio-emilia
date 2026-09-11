@@ -12,7 +12,7 @@ const PERSON_KEY='cca-local-person';
 const LEGACY_PERSON_KEY='affitti-re-person';
 const LIKES_CACHE_KEY='affitti-re-likes-cache';
 
-const people=['Dade','Bonni','Ciccio'];
+const people=['Bonni','Ciccio','Dade'];
 function readPerson(){
   try{
     let raw=localStorage.getItem(PERSON_KEY);
@@ -98,13 +98,13 @@ let map,mapTiles,markers=new Map(),visible=[],selectedId=null,toastTimer,booted=
 const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 function hydrate(root=document){root.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=icon(el.dataset.icon));}
 function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2800);}
-function matches(d){return (!state.saved||isLiked(d.id))&&(!state.query||`${d.title} ${d.zone} ${d.address||''}`.toLocaleLowerCase('it').includes(state.query))&&(!state.filters.has('garage')||d.garage===true)&&(!state.filters.has('bedrooms')||d.bedrooms>=3)&&(!state.filters.has('budget')||(d.price!=null&&d.price/3<=280))&&(!state.max||(d.price!=null&&d.price<=state.max))&&(!state.furnished||d.furnished===true)&&(!state.available||d.available!==false);}
+function matches(d){/* Non disponibili oltre 48h da delistedAt: non mostrare. */if(isPastDelistGrace(d))return false;return (!state.saved||isLiked(d.id))&&(!state.query||`${d.title} ${d.zone} ${d.address||''}`.toLocaleLowerCase('it').includes(state.query))&&(!state.filters.has('garage')||d.garage===true)&&(!state.filters.has('bedrooms')||d.bedrooms>=3)&&(!state.filters.has('budget')||(d.price!=null&&d.price/3<=280))&&(!state.max||(d.price!=null&&d.price<=state.max))&&(!state.furnished||d.furnished===true)&&(!state.available||d.available!==false);}
 function photo(d,detail=false){return d.image?`<img ${detail?'class="detail-photo"':'loading="lazy"'} src="${esc(d.image)}" alt="${esc(d.title)}" ${detail?'':'width="420" height="300"'} decoding="async">`:`<div class="photo-placeholder ${detail?'detail-photo':''}">${icon('home')}<span>Foto non disponibile</span></div>`;}
 function expense(d){return d.expenses!=null?`+ ${money(d.expenses)} di spese / mese`:(d.costNote?`Spese/consumi: ${d.costNote}`:'Spese non indicate');}
 function card(d){
   const likeTxt=likesLabel(d.id);
   const others=othersLiked(d.id)&&!isLiked(d.id);
-  return `<article class="card ${d.available===false?'unavailable':''}${others?' has-others-like':''}" data-id="${esc(d.id)}"><div class="photo-wrap"><button class="photo-button" data-detail="${esc(d.id)}" aria-label="Vedi ${esc(d.title)}">${photo(d)}</button>${d.available===false?'<span class="badge">Non disponibile</span>':d.garage?'<span class="badge">Con garage</span>':''}<button class="heart" data-like="${esc(d.id)}" aria-label="${isLiked(d.id)?'Rimuovi dai':'Aggiungi ai'} preferiti: ${esc(d.title)}" aria-pressed="${isLiked(d.id)}">${icon('heart')}</button></div><div class="card-info"><p class="card-zone"><span>${esc(d.zone)}</span>${d.approx?`<span title="Posizione indicativa">${icon('pin')}</span>`:''}</p><h3><button class="title-button" data-detail="${esc(d.id)}">${esc(d.title)}</button></h3><div class="card-facts">${d.mq?`<span>${icon('area')}${d.mq} m²</span>`:''}${d.bedrooms?`<span>${icon('bed')}${d.bedrooms} camere</span>`:''}${d.garage?`<span class="garage-fact">${icon('garage')}Garage</span>`:''}</div><div class="card-price"><span><strong>${d.price!=null?money(d.price):'Prezzo da verificare'}</strong>${d.price!=null?' <small>/ mese</small>':''}</span>${d.price!=null?`<span class="person-price">${money(d.price/3)} / persona</span>`:''}</div><p class="expenses">${expense(d)}</p>${likeTxt?`<p class="likes-line">${esc(likeTxt)}</p>`:''}</div></article>`;
+  return `<article class="card ${d.available===false?'unavailable':''}${others?' has-others-like':''}" data-id="${esc(d.id)}"><div class="photo-wrap"><button class="photo-button" data-detail="${esc(d.id)}" aria-label="Vedi ${esc(d.title)}">${photo(d)}</button>${d.available===false?'<span class="badge">Non disponibile</span>':d.garage?'<span class="badge">Con garage</span>':''}<button class="heart" data-like="${esc(d.id)}" aria-label="${isLiked(d.id)?'Rimuovi dai':'Aggiungi ai'} preferiti: ${esc(d.title)}" aria-pressed="${isLiked(d.id)}">${icon('heart')}</button></div><div class="card-info"><p class="card-zone"><span>${esc(d.zone)}</span>${d.approx?`<span title="Posizione indicativa">${icon('pin')}</span>`:''}</p><h3><button class="title-button" data-detail="${esc(d.id)}">${esc(d.title)}</button></h3><div class="card-facts">${d.mq?`<span>${icon('area')}${d.mq} m²</span>`:''}${d.bedrooms?`<span>${icon('bed')}${d.bedrooms} camere</span>`:''}${d.garage?`<span class="garage-fact">${icon('garage')}Garage</span>`:''}</div><div class="card-price"><span class="card-price-main"><strong>${d.price!=null?money(d.price):'Prezzo da verificare'}</strong>${ownerBadge(d.owner)}${d.price!=null?' <small>/ mese</small>':''}</span>${d.price!=null?`<span class="person-price">${money(d.price/3)} / persona</span>`:''}</div><p class="expenses">${expense(d)}</p>${likeTxt?`<p class="likes-line">${esc(likeTxt)}</p>`:''}</div></article>`;
 }
 function render(){
  visible=items.filter(matches).sort((a,b)=>{
@@ -133,9 +133,9 @@ function render(){
 function highlight(id,on){const marker=markers.get(id);if(!marker)return;marker.getElement()?.querySelector('.price-pin')?.classList.toggle('highlight',on);marker.setZIndexOffset(on?1000:0);}
 function updateMarkers(){if(!map)return;markers.forEach(m=>m.remove());markers.clear();visible.forEach(d=>{
  if(!Number.isFinite(d.lat)||!Number.isFinite(d.lng))return;
- const savedCls=isLiked(d.id)?'saved':'';
- const othersCls=(!isLiked(d.id)&&hasAnyLikes(d.id))?'has-likes':'';
- const marker=L.marker([d.lat,d.lng],{title:`${d.title}, ${d.price!=null?money(d.price):'prezzo da verificare'}${d.approx?', posizione indicativa':''}`,icon:L.divIcon({className:'price-marker',html:`<span class="price-pin ${d.approx?'approx':''} ${d.available===false?'gone':''} ${savedCls} ${othersCls}">${d.price!=null?money(d.price):'Vedi'}</span>`,iconSize:[68,32],iconAnchor:[34,16]})}).addTo(map);
+ const liked=hasAnyLikes(d.id);
+ const w=liked||d.owner?96:68;
+ const marker=L.marker([d.lat,d.lng],{title:`${d.title}, ${d.price!=null?money(d.price):'prezzo da verificare'}${d.owner?', responsabile '+d.owner.name:''}${d.approx?', posizione indicativa':''}`,icon:L.divIcon({className:'price-marker',html:pinHtml(d),iconSize:[w,32],iconAnchor:[w/2,16]})}).addTo(map);
  marker.bindPopup(`<button class="popup-button" data-detail="${esc(d.id)}">${d.image?`<img src="${esc(d.image)}" alt="${esc(d.title)}">`:''}<strong>${esc(d.title)}</strong><span>${d.price!=null?money(d.price)+' / mese':'Prezzo da verificare'} · Vedi dettagli</span>${likesLabel(d.id)?`<span class="likes-line">${esc(likesLabel(d.id))}</span>`:''}</button>`,{maxWidth:235});
  marker.on('mouseover',()=>highlight(d.id,true));marker.on('mouseout',()=>highlight(d.id,false));markers.set(d.id,marker);
  });}
@@ -165,8 +165,8 @@ function toggleLike(id){
  if(needsRerender)render();else{
   document.querySelectorAll('[data-like]').forEach(b=>{if(b.dataset.like!==id)return;b.setAttribute('aria-pressed',next);if(b.classList.contains('heart')){const t=items.find(d=>d.id===id);b.setAttribute('aria-label',`${liked?'Aggiungi ai':'Rimuovi dai'} preferiti: ${t?t.title:''}`);b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');}});
   $('saved-count').textContent=items.filter(x=>isLiked(x.id)).length;
-  const pin=markers.get(id)?.getElement()?.querySelector('.price-pin');
-  if(pin){pin.classList.toggle('saved',next);pin.classList.toggle('has-likes',!next&&hasAnyLikes(id));}
+  const marker=markers.get(id);
+  if(marker){const d=items.find(x=>x.id===id);if(d){const el=marker.getElement();const wrap=el?.querySelector('.price-pin')?.parentElement||el;if(wrap){const tmp=document.createElement('div');tmp.innerHTML=pinHtml(d);const neu=tmp.firstElementChild;const old=el.querySelector('.price-pin');if(old&&neu)old.replaceWith(neu);}}}
   const cardEl=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
   if(cardEl){
    const line=cardEl.querySelector('.likes-line');
@@ -194,7 +194,7 @@ function toggleLike(id){
  }});
 }
 function reset(){state.filters.clear();state.query='';state.max=0;state.furnished=false;state.available=false;$('query').value='';render();}
-function updatePerson(){ $('person-label').textContent=person;$('avatar').textContent=person[0];$('profile').setAttribute('aria-label',`Profilo ${person}: cambia persona`);}
+function updatePerson(){ $('person-label').textContent='Chi sei?';$('avatar').textContent=person?person[0]:'?';$('profile').setAttribute('aria-label','Chi sei?');}
 function mapTileUrl(){return 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';}
 function mapLabelsUrl(){return 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}';}
 function mapFallbackUrl(){return 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';}
@@ -202,12 +202,12 @@ function updateThemeControl(){document.documentElement.dataset.theme='light';con
 function applyTheme(){document.documentElement.dataset.theme='light';updateThemeControl();mapTiles?.setUrl(mapTileUrl());}
 function showUpdatedAt(iso){
  const el=$('updated-at');
- if(!iso){el.textContent='dal foglio live';el.removeAttribute('datetime');return;}
+ if(!iso){el.textContent='Non disponibile';el.removeAttribute('datetime');el.removeAttribute('title');return;}
  const date=new Date(iso);
- if(Number.isNaN(date.getTime())){el.textContent='dal foglio live';el.removeAttribute('datetime');return;}
+ if(Number.isNaN(date.getTime())){el.textContent='Non disponibile';el.removeAttribute('datetime');el.removeAttribute('title');return;}
  el.dateTime=date.toISOString();
  el.textContent=new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(date);
- el.title='Ora italiana (Europe/Rome). Ultima lettura live dal foglio.';
+ el.title='Ora italiana (Europe/Rome). Ultimo aggiornamento dal file last-updated.json.';
 }
 
 function listingId(url){
@@ -216,6 +216,38 @@ function listingId(url){
  return m?m[1]:'';
 }
 function cleanUrl(url){return String(url||'').split('#')[0].split('?')[0];}
+
+/** Mappa colonna E foglio → profilo locale (lettera badge responsabile). */
+function mapOwner(raw){
+ const s=String(raw??'').trim().toLowerCase();
+ if(!s)return null;
+ if(s==='bonni'||s==='bonnie')return {name:'Bonni',letter:'B'};
+ if(s==='cristian'||s==='christian'||s==='ciccio')return {name:'Ciccio',letter:'C'};
+ if(s==='dade')return {name:'Dade',letter:'D'};
+ return null;
+}
+function ownerBadge(owner){
+ if(!owner)return '';
+ return `<span class="owner-badge" title="Responsabile: ${esc(owner.name)}">${esc(owner.letter)}</span>`;
+}
+/** Annunci non disponibili restano 48h (delistedAt), poi spariscono da lista/mappa. */
+const DELIST_GRACE_MS=48*60*60*1000;
+function isPastDelistGrace(d){
+ if(d.available!==false)return false;
+ if(!d.delistedAt)return false;
+ const t=new Date(d.delistedAt).getTime();
+ if(Number.isNaN(t))return false;
+ return (Date.now()-t)>DELIST_GRACE_MS;
+}
+function pinHtml(d){
+ const liked=hasAnyLikes(d.id);
+ const heart=liked?`<span class="pin-heart" aria-hidden="true">${icon('heart')}</span>`:'';
+ const badge=ownerBadge(d.owner);
+ const price=d.price!=null?money(d.price):'Vedi';
+ const cls=['price-pin',d.approx?'approx':'',d.available===false?'gone':'',liked?'has-likes':''].filter(Boolean).join(' ');
+ return `<span class="${cls}">${heart}${badge}<span class="pin-price">${price}</span></span>`;
+}
+
 
 function loadSheet(){
  return new Promise((resolve,reject)=>{
@@ -246,7 +278,9 @@ function rowsFromSheet(data){
   if(!/^https?:\/\//i.test(s))continue;
   const noteC=cells[2]&&(cells[2].v||cells[2].f);
   const noteCStr=noteC!=null?String(noteC).trim():'';
-  out.push({url:s,noteB:noteBStr,noteC:noteCStr});
+  const noteE=cells[4]&&(cells[4].v||cells[4].f);
+  const noteEStr=noteE!=null?String(noteE).trim():'';
+  out.push({url:s,noteB:noteBStr,noteC:noteCStr,ownerRaw:noteEStr});
  }
  return out;
 }
@@ -268,11 +302,16 @@ function buildItems(sheetRows,details){
   if(Number.isFinite(beds)&&beds<2)continue;
   if(Number.isFinite(maxP)&&maxP<=2)continue;
   const image=d.image||(id.match(/^\d+$/)?`photos/${id}.jpg`:null);
-  built.push({
+  const available=d.available===false?false:true;
+  const delistedAt=d.delistedAt||null;
+  // Non disponibili: restano in lista/mappa 48h da delistedAt, poi SKIP.
+  const item={
    id:String(id),
    url:cleanUrl(url),
    note:row.noteB||'',
    costNote:row.noteC||'',
+   owner:mapOwner(row.ownerRaw),
+   assignee:mapOwner(row.ownerRaw),
    title:d.title,
    zone:d.zone||'Zona da verificare',
    address:d.address||'',
@@ -290,10 +329,14 @@ function buildItems(sheetRows,details){
    lng:d.lng!=null?Number(d.lng):null,
    approx:!!d.approx,
    image:image,
-   available:d.available===false?false:true,
+   available:available,
+   delistedAt:delistedAt,
    maxPeople:d.maxPeople!=null?d.maxPeople:null,
-   index:index++
-  });
+   index:index
+  };
+  if(isPastDelistGrace(item))continue;
+  item.index=index++;
+  built.push(item);
  }
  return built;
 }
@@ -342,17 +385,18 @@ bindUi();
 
 (async()=>{
  try{
-  const [sheet,details]=await Promise.all([
+  const [sheet,details,updatedMeta]=await Promise.all([
    loadSheet(),
    fetch('details.json?t='+Date.now()).then(r=>r.ok?r.json():{}),
+   fetch('last-updated.json?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null),
    fetchLikes()
   ]);
   const sheetRows=rowsFromSheet(sheet);
   items=buildItems(sheetRows,details);
   window.LISTINGS=items;
-  const now=new Date().toISOString();
-  window.CATALOG_META={updatedAt:now,scope:'live-sheet',checks:'9,14,19'};
-  showUpdatedAt(now);
+  const updatedAt=updatedMeta&&updatedMeta.updatedAt?updatedMeta.updatedAt:null;
+  window.CATALOG_META={updatedAt:updatedAt,scope:'live-sheet',checks:'9,14,19'};
+  showUpdatedAt(updatedAt);
   initMap();
   render();
   fitMap();
