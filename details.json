@@ -409,9 +409,9 @@
     "available": true
   },
   "54614885": {
-    "title": "Trilocale Buco del Signore con garage (cucina arredata)",
+    "title": "Trilocale Buco del Signore",
     "zone": "Buco del Signore-Acque Chiare",
-    "address": "Buco del Signore-Acque Chiare (rif. A1144/2)",
+    "address": "Buco del Signore-Acque Chiare",
     "price": 685,
     "expenses": 83,
     "mq": 98,
@@ -422,14 +422,14 @@
     "furnished": true,
     "garage": true,
     "elevator": true,
-    "lat": 44.6815,
-    "lng": 10.6395,
+    "lat": 44.673521,
+    "lng": 10.6382216,
     "approx": true,
     "image": "photos/54614885.jpg",
     "available": true
   },
   "54567874": {
-    "title": "Quadrilocale Via Bonifazio Asioli ammobiliato",
+    "title": "Quadrilocale Via Bonifazio Asioli",
     "zone": "Ospedale / San Pellegrino",
     "address": "Via Bonifazio Asioli, Ospedale-San Pellegrino",
     "price": 890,
@@ -443,8 +443,8 @@
     "garage": false,
     "elevator": true,
     "lat": 44.688702,
-    "lng": 10.629042,
-    "approx": true,
+    "lng": 10.629292,
+    "approx": false,
     "image": "photos/54567874.jpg",
     "available": true
   }
