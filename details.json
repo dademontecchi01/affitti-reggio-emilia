@@ -326,7 +326,9 @@
     "lat": 44.6793923,
     "lng": 10.6348843,
     "approx": false,
-    "image": "photos/54522144.jpg"
+    "image": "photos/54522144.jpg",
+    "available": false,
+    "delistedAt": "2026-09-11T19:08:52+02:00"
   },
   "54699991": {
     "title": "Trilocale Buco del Signore arredato con garage",
