@@ -7,6 +7,7 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;
 const money=n=>new Intl.NumberFormat('it-IT',{maximumFractionDigits:0}).format(n)+' €';
 
 const SHEET_ID='1HYXLX9SNe0J6xJBuxV6XUrnqAojN1Qf0iowcfWVIrMM';
+const SHEET_GID='380122453';
 const LIKES_API_URL='https://script.google.com/macros/s/AKfycbyewMC6joL46lI2bLbFITNn_xyRZAvNdd2BLjMhEVPxFJ4KLk8bFptOIs-_1Mjq9XA/exec';
 const PERSON_KEY='cca-local-person';
 const LEGACY_PERSON_KEY='affitti-re-person';
@@ -256,31 +257,50 @@ function loadSheet(){
   const prev=window.google;
   window.google={visualization:{Query:{setResponse(data){window.google=prev;finish(resolve,data);}}}};
   const s=document.createElement('script');
-  s.src='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:json&gid=0&headers=0&t='+Date.now();
+  s.src='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:json&gid='+SHEET_GID+'&headers=0&t='+Date.now();
   s.onerror=()=>finish(reject,new Error('sheet'));
   document.head.appendChild(s);
   const timer=setTimeout(()=>finish(reject,new Error('sheet-timeout')),12000);
  });
 }
 
+function cellText(cells,i){
+ const c=cells[i];
+ if(!c)return '';
+ const v=c.v!=null?c.v:c.f;
+ return v!=null?String(v).trim():'';
+}
+
 function rowsFromSheet(data){
+ // Foglio gid=380122453: B=LINK, D=bollette, E=note bollette, I=richieste, J=CHI LA SENTE, K=note extra.
+ // Righe sotto la marker «ELIMINATI» in B restano fuori mappa.
  const rows=(data.table&&data.table.rows)||[];
  const out=[];
+ let eliminated=false;
  for(const row of rows){
   const cells=row.c||[];
-  const noteB=cells[1]&&(cells[1].v||cells[1].f);
-  const noteBStr=noteB!=null?String(noteB).trim():'';
-  if(/^Duplicato\b/i.test(noteBStr))continue;
-  const cell=cells[0];
-  const v=cell&&(cell.v||cell.f);
-  if(!v)continue;
-  const s=String(v).trim();
-  if(!/^https?:\/\//i.test(s))continue;
-  const noteC=cells[2]&&(cells[2].v||cells[2].f);
-  const noteCStr=noteC!=null?String(noteC).trim():'';
-  const noteE=cells[4]&&(cells[4].v||cells[4].f);
-  const noteEStr=noteE!=null?String(noteE).trim():'';
-  out.push({url:s,noteB:noteBStr,noteC:noteCStr,ownerRaw:noteEStr});
+  const linkOrMarker=cellText(cells,1);
+  if(/^ELIMINATI\b/i.test(linkOrMarker)){eliminated=true;continue;}
+  if(eliminated)continue;
+  if(/^Duplicato\b/i.test(linkOrMarker))continue;
+  if(!/^https?:\/\//i.test(linkOrMarker))continue;
+  const bollette=cellText(cells,3);
+  const bolletteNote=cellText(cells,4);
+  const richieste=cellText(cells,8);
+  const ownerRaw=cellText(cells,9);
+  const extra=cellText(cells,10);
+  const costParts=[];
+  if(bollette&&bollette!=='???')costParts.push(bollette);
+  if(bolletteNote)costParts.push(bolletteNote);
+  const noteParts=[];
+  if(richieste&&richieste!=='---')noteParts.push(richieste);
+  if(extra)noteParts.push(extra);
+  out.push({
+   url:linkOrMarker,
+   noteB:noteParts.join(' · '),
+   noteC:costParts.join(' · '),
+   ownerRaw:ownerRaw
+  });
  }
  return out;
 }
