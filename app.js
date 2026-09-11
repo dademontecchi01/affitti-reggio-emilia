@@ -261,6 +261,8 @@ function buildItems(sheetRows,details){
   if(!id||seen.has(id))continue;
   seen.add(id);
   const d=Object.assign({},details[id]||{});
+  // Senza scheda in details.json non mostriamo card vuote.
+  if(!d.title||d.price==null)continue;
   const beds=Number(d.bedrooms);
   const maxP=Number(d.maxPeople);
   if(Number.isFinite(beds)&&beds<2)continue;
@@ -271,7 +273,7 @@ function buildItems(sheetRows,details){
    url:cleanUrl(url),
    note:row.noteB||'',
    costNote:row.noteC||'',
-   title:d.title||'Annuncio da completare',
+   title:d.title,
    zone:d.zone||'Zona da verificare',
    address:d.address||'',
    price:d.price!=null?d.price:null,
