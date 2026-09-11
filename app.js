@@ -141,8 +141,13 @@ function updateMarkers(){if(!map)return;markers.forEach(m=>m.remove());markers.c
  });}
 function fitMap(){if(!map)return;const coords=visible.filter(d=>Number.isFinite(d.lat)&&Number.isFinite(d.lng)).map(d=>[d.lat,d.lng]);if(coords.length)map.fitBounds(coords,{padding:[60,85],maxZoom:14,animate:!reduced()});else map.setView([44.692,10.636],13,{animate:false});}
 function initMap(){if(!window.L){$('map-error').hidden=false;return;}if(map)return;map=L.map('map',{zoomControl:false,scrollWheelZoom:false}).setView([44.692,10.636],13);L.control.zoom({position:'bottomright'}).addTo(map);
- const tiles=mapTiles=L.tileLayer(mapTileUrl(),{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',maxZoom:19}).addTo(map);
- let failures=0;tiles.on('tileerror',()=>{if(++failures>=4)$('map-error').hidden=false;});tiles.on('tileload',()=>{$('map-error').hidden=true;failures=0;});new ResizeObserver(()=>map.invalidateSize()).observe($('map-panel'));updateMarkers();fitMap();}
+ const tiles=mapTiles=L.tileLayer(mapTileUrl(),{attribution:'Tiles &copy; Esri',maxZoom:16}).addTo(map);
+ const labels=L.tileLayer(mapLabelsUrl(),{maxZoom:16}).addTo(map);
+ let failures=0, fellBack=false;
+ function useFallback(){if(fellBack)return;fellBack=true;map.removeLayer(tiles);map.removeLayer(labels);mapTiles=L.tileLayer(mapFallbackUrl(),{attribution:'&copy; OpenStreetMap',maxZoom:19}).addTo(map);}
+ tiles.on('tileerror',()=>{if(++failures>=4)useFallback();});
+ tiles.on('tileload',()=>{$('map-error').hidden=true;failures=0;});
+ new ResizeObserver(()=>map.invalidateSize()).observe($('map-panel'));updateMarkers();fitMap();}
 function detail(d){selectedId=d.id;const facts=[['area',d.mq?d.mq+' m²':null],['bed',d.bedrooms?d.bedrooms+' camere':null],['bath',d.baths?d.baths+(d.baths===1?' bagno':' bagni'):null],['floor',d.floor?d.floor+' piano':null],['sofa',d.furnished===true?'Arredato':d.furnished===false?'Non arredato':null],['garage',d.garage===true?'Garage':d.garage===false?'Senza garage':null]];
  const likeTxt=likesLabel(d.id);
  const expLine=d.expenses!=null?`+ ${money(d.expenses)} di spese / mese. `:'';
@@ -190,7 +195,9 @@ function toggleLike(id){
 }
 function reset(){state.filters.clear();state.query='';state.max=0;state.furnished=false;state.available=false;$('query').value='';render();}
 function updatePerson(){ $('person-label').textContent=person;$('avatar').textContent=person[0];$('profile').setAttribute('aria-label',`Profilo ${person}: cambia persona`);}
-function mapTileUrl(){return 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';}
+function mapTileUrl(){return 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';}
+function mapLabelsUrl(){return 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}';}
+function mapFallbackUrl(){return 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';}
 function updateThemeControl(){document.documentElement.dataset.theme='light';const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content='#ffffff';}
 function applyTheme(){document.documentElement.dataset.theme='light';updateThemeControl();mapTiles?.setUrl(mapTileUrl());}
 function showUpdatedAt(iso){
