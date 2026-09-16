@@ -390,28 +390,6 @@
     "source": "casa.it",
     "note": "cucina arredata; 2 camere + studio; box+posto auto inclusi"
   },
-  "54704500": {
-    "title": "Appartamento Via Maria Melato con garage",
-    "zone": "Mirabello / Stazione",
-    "address": "Via Maria Melato, Mirabello-Stazione",
-    "price": 1000,
-    "expenses": null,
-    "mq": 130,
-    "rooms": 6,
-    "bedrooms": 3,
-    "baths": 2,
-    "floor": "2°",
-    "furnished": true,
-    "garage": true,
-    "elevator": true,
-    "lat": 44.6895779,
-    "lng": 10.6453375,
-    "approx": true,
-    "available": true,
-    "link": "https://www.casa.it/immobili/54704500/",
-    "source": "casa.it",
-    "note": "arredato solo di cucina (conta come arredato); 3 camere; garage incluso"
-  },
   "53248057": {
     "title": "Trilocale Centro Storico su due livelli",
     "zone": "Centro Storico",
