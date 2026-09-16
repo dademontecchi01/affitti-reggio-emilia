@@ -17,7 +17,8 @@
     "lng": 10.6496037,
     "approx": true,
     "image": "photos/36683960.jpg",
-    "maxPeople": 3
+    "maxPeople": 3,
+    "url": "https://www.idealista.it/immobile/36683960/"
   },
   "132257644": {
     "title": "Trilocale Via Ettore Petrolini",
@@ -37,7 +38,8 @@
     "lng": 10.6445602,
     "approx": false,
     "image": "photos/132257644.jpg",
-    "maxPeople": 2
+    "maxPeople": 2,
+    "url": "https://www.immobiliare.it/annunci/132257644/"
   },
   "129564290": {
     "title": "Quadrilocale via Bernardino Telesio 16",
@@ -56,7 +58,8 @@
     "lat": 44.6785885,
     "lng": 10.6279395,
     "approx": false,
-    "image": "photos/129564290.jpg"
+    "image": "photos/129564290.jpg",
+    "url": "https://www.immobiliare.it/annunci/129564290/"
   },
   "129792124": {
     "title": "Trilocale via Porta Brennone 42",
@@ -75,7 +78,10 @@
     "lat": 44.6952876,
     "lng": 10.6265304,
     "approx": false,
-    "image": "photos/129792124.jpg"
+    "image": "photos/129792124.jpg",
+    "url": "https://www.immobiliare.it/annunci/129792124/",
+    "available": false,
+    "delistedAt": "2026-09-16T14:20:02+02:00"
   },
   "125903239": {
     "title": "Trilocale viale Piave",
@@ -94,7 +100,8 @@
     "lat": 44.7010727,
     "lng": 10.6374308,
     "approx": true,
-    "image": "photos/125903239.jpg"
+    "image": "photos/125903239.jpg",
+    "url": "https://www.immobiliare.it/annunci/125903239/"
   },
   "131521134": {
     "title": "Quadrilocale viale Luciano Manara",
@@ -113,7 +120,8 @@
     "lat": 44.6897326,
     "lng": 10.6379762,
     "approx": true,
-    "image": "photos/131521134.jpg"
+    "image": "photos/131521134.jpg",
+    "url": "https://www.immobiliare.it/annunci/131521134/"
   },
   "130036382": {
     "title": "Trilocale viale Risorgimento 80",
@@ -133,7 +141,8 @@
     "lng": 10.6301245,
     "approx": false,
     "image": "photos/130036382.jpg",
-    "maxPeople": 3
+    "maxPeople": 3,
+    "url": "https://www.immobiliare.it/annunci/130036382/"
   },
   "54516896": {
     "title": "Quadrilocale Ospedale",
@@ -152,7 +161,8 @@
     "lat": 44.6844,
     "lng": 10.632,
     "approx": true,
-    "image": "photos/54516896.jpg"
+    "image": "photos/54516896.jpg",
+    "url": "https://www.casa.it/immobili/54516896/"
   },
   "53794043": {
     "title": "Quadrilocale vicino Ospedale",
@@ -171,7 +181,10 @@
     "lat": 44.6852,
     "lng": 10.6288,
     "approx": true,
-    "image": "photos/53794043.jpg"
+    "image": "photos/53794043.jpg",
+    "url": "https://www.casa.it/immobili/53794043/",
+    "available": false,
+    "delistedAt": "2026-09-16T14:20:02+02:00"
   },
   "54650035": {
     "title": "Trilocale Mirabello",
@@ -189,7 +202,8 @@
     "lat": 44.6914982,
     "lng": 10.6428685,
     "approx": true,
-    "image": "photos/54650035.jpg"
+    "image": "photos/54650035.jpg",
+    "url": "https://www.casa.it/immobili/54650035/"
   },
   "53984894": {
     "title": "Quadrilocale via Goffredo Mameli",
@@ -208,7 +222,8 @@
     "lat": 44.6912767,
     "lng": 10.6272883,
     "approx": true,
-    "image": "photos/53984894.jpg"
+    "image": "photos/53984894.jpg",
+    "url": "https://www.casa.it/immobili/53984894/"
   },
   "53356355": {
     "title": "Quadrilocale Ospizio",
@@ -227,7 +242,8 @@
     "lat": 44.6928,
     "lng": 10.6482,
     "approx": true,
-    "image": "photos/53356355.jpg"
+    "image": "photos/53356355.jpg",
+    "url": "https://www.casa.it/immobili/53356355/"
   },
   "54256780": {
     "title": "Trilocale Porta Castello",
@@ -246,7 +262,8 @@
     "lat": 44.6930996,
     "lng": 10.6294202,
     "approx": true,
-    "image": "photos/54256780.jpg"
+    "image": "photos/54256780.jpg",
+    "url": "https://www.casa.it/immobili/54256780/"
   },
   "54519658": {
     "title": "Trilocale Circonvallazione Sud",
@@ -265,7 +282,8 @@
     "lat": 44.6865,
     "lng": 10.6355,
     "approx": true,
-    "image": "photos/54519658.jpg"
+    "image": "photos/54519658.jpg",
+    "url": "https://www.casa.it/immobili/54519658/"
   },
   "54699991": {
     "title": "Trilocale Buco del Signore arredato con garage",
@@ -284,7 +302,8 @@
     "lat": 44.6815,
     "lng": 10.6395,
     "approx": true,
-    "image": "photos/54699991.jpg"
+    "image": "photos/54699991.jpg",
+    "url": "https://www.casa.it/immobili/54699991/"
   },
   "36760055": {
     "title": "Quadrilocale Via Gandhi Mohandas Karamchand 14",
@@ -305,7 +324,8 @@
     "approx": false,
     "image": "photos/36760055.jpg",
     "available": false,
-    "delistedAt": "2026-09-15T19:57:40+02:00"
+    "delistedAt": "2026-09-15T19:57:40+02:00",
+    "url": "https://www.idealista.it/immobile/36760055/"
   },
   "132362200": {
     "title": "Quadrilocale Via Bonifazio Asioli 2",
@@ -325,7 +345,8 @@
     "lng": 10.6286746,
     "approx": false,
     "image": "photos/132362200.jpg",
-    "available": true
+    "available": true,
+    "url": "https://www.immobiliare.it/annunci/132362200/"
   },
   "54614885": {
     "title": "Trilocale Buco del Signore",
@@ -346,7 +367,8 @@
     "approx": true,
     "image": "photos/54614885.jpg",
     "available": false,
-    "delistedAt": "2026-09-14T19:55:12+02:00"
+    "delistedAt": "2026-09-14T19:55:12+02:00",
+    "url": "https://www.casa.it/immobili/54614885/"
   },
   "54567874": {
     "title": "Quadrilocale Via Bonifazio Asioli",
@@ -366,7 +388,8 @@
     "lng": 10.629292,
     "approx": false,
     "image": "photos/54567874.jpg",
-    "available": true
+    "available": true,
+    "url": "https://www.casa.it/immobili/54567874/"
   },
   "54171130": {
     "title": "Appartamento Ospedale-San Pellegrino con garage",
@@ -388,7 +411,8 @@
     "available": true,
     "link": "https://www.casa.it/immobili/54171130/",
     "source": "casa.it",
-    "note": "cucina arredata; 2 camere + studio; box+posto auto inclusi"
+    "note": "cucina arredata; 2 camere + studio; box+posto auto inclusi",
+    "url": "https://www.casa.it/immobili/54171130/"
   },
   "53248057": {
     "title": "Trilocale Centro Storico su due livelli",
@@ -410,7 +434,8 @@
     "available": true,
     "link": "https://www.casa.it/immobili/53248057/",
     "source": "casa.it",
-    "note": "cucina arredata; 2 camere matrimoniali su due livelli"
+    "note": "cucina arredata; 2 camere matrimoniali su due livelli",
+    "url": "https://www.casa.it/immobili/53248057/"
   },
   "54027194": {
     "title": "Appartamento Viale Umberto I tre camere",
@@ -432,7 +457,8 @@
     "available": true,
     "link": "https://www.casa.it/immobili/54027194/",
     "source": "casa.it",
-    "note": "completamente arredato; 3 camere; spese condo alte (€300)"
+    "note": "completamente arredato; 3 camere; spese condo alte (€300)",
+    "url": "https://www.casa.it/immobili/54027194/"
   },
   "54618103": {
     "title": "Trilocale Via Francesco Cassoli",
@@ -455,7 +481,8 @@
     "link": "https://www.casa.it/immobili/54618103/",
     "source": "casa.it",
     "note": "completamente arredato; 2 camere; spese condo ~200€ (riscaldamento+acqua); richiesti 2 contratti indeterminato",
-    "image": "photos/54618103.jpg"
+    "image": "photos/54618103.jpg",
+    "url": "https://www.casa.it/immobili/54618103/"
   },
   "36828885": {
     "title": "Quadrilocale Baragalla con box",
