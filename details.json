@@ -509,5 +509,31 @@
     "source": "casa.it_email_2026-09-17",
     "note": "completamente arredato; 2 stanze matrimoniali su due livelli; no spese condo; preferisce affitti brevi; solo referenziati",
     "image": "photos/45008442.jpg"
+  },
+  "36849989": {
+    "title": "Quadrilocale Via Ruggero Ruggeri arredato",
+    "zone": "Mirabello / Ospizio",
+    "address": "Via Ruggero Ruggeri, Mirabello-Ospizio",
+    "price": 750,
+    "expenses": 0,
+    "expensesNote": "spese condominiali incluse; utenze a parte",
+    "mq": 82,
+    "rooms": 4,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "T",
+    "furnished": true,
+    "garage": true,
+    "garage_note": "posto auto coperto + cantina inclusi",
+    "elevator": false,
+    "lat": 44.6897061,
+    "lng": 10.6422848,
+    "approx": true,
+    "available": true,
+    "url": "https://www.idealista.it/immobile/36849989/",
+    "link": "https://www.idealista.it/immobile/36849989/",
+    "source": "idealista_email_2026-09-17",
+    "note": "arredato; 1 matrimoniale + 1 singola; posto auto coperto; spese condo incluse",
+    "image": "photos/36849989.jpg"
   }
 }
