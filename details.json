@@ -348,28 +348,6 @@
     "available": true,
     "url": "https://www.immobiliare.it/annunci/132362200/"
   },
-  "54614885": {
-    "title": "Trilocale Buco del Signore",
-    "zone": "Buco del Signore-Acque Chiare",
-    "address": "Buco del Signore-Acque Chiare",
-    "price": 685,
-    "expenses": 83,
-    "mq": 98,
-    "rooms": 3,
-    "bedrooms": 2,
-    "baths": 1,
-    "floor": "2°",
-    "furnished": true,
-    "garage": true,
-    "elevator": true,
-    "lat": 44.673521,
-    "lng": 10.6382216,
-    "approx": true,
-    "image": "photos/54614885.jpg",
-    "available": false,
-    "delistedAt": "2026-09-14T19:55:12+02:00",
-    "url": "https://www.casa.it/immobili/54614885/"
-  },
   "54567874": {
     "title": "Quadrilocale Via Bonifazio Asioli",
     "zone": "Ospedale / San Pellegrino",
