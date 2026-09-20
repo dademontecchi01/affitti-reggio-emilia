@@ -1,4 +1,28 @@
 {
+  "54782442": {
+    "title": "Appartamento Via Józef Wybicki 35 arredato",
+    "zone": "Rosta Nuova",
+    "address": "Via Józef Wybicki 35, Rosta Nuova",
+    "price": 720,
+    "expenses": 80,
+    "mq": 120,
+    "rooms": 5,
+    "bedrooms": 3,
+    "baths": 1,
+    "floor": "1°",
+    "furnished": true,
+    "garage": false,
+    "elevator": false,
+    "lat": 44.6857049,
+    "lng": 10.6389756,
+    "approx": false,
+    "image": "photos/54782442.jpg",
+    "maxPeople": 3,
+    "available": true,
+    "url": "https://www.casa.it/immobili/54782442/",
+    "source": "casa_it_email_2026-09-20",
+    "note": "Mirror Idealista 36880586; uso transitorio studenti/lavoratori; 3 camere; max 3 persone; Immo Bilio 19:00 20/09"
+  },
   "36683960": {
     "title": "Trilocale Mirabello panoramico",
     "zone": "Mirabello / Ospizio",
