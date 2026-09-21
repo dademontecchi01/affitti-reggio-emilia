@@ -231,14 +231,9 @@ function ownerBadge(owner){
  if(!owner)return '';
  return `<span class="owner-badge" title="Responsabile: ${esc(owner.name)}">${esc(owner.letter)}</span>`;
 }
-/** Annunci non disponibili restano 48h (delistedAt), poi spariscono da lista/mappa. */
-const DELIST_GRACE_MS=48*60*60*1000;
+/** Fuori vendita: non in mappa subito (restano solo sul foglio, in rosso). */
 function isPastDelistGrace(d){
- if(d.available!==false)return false;
- if(!d.delistedAt)return false;
- const t=new Date(d.delistedAt).getTime();
- if(Number.isNaN(t))return false;
- return (Date.now()-t)>DELIST_GRACE_MS;
+ return d.available===false;
 }
 function pinHtml(d){
  const liked=hasAnyLikes(d.id);
@@ -324,7 +319,7 @@ function buildItems(sheetRows,details){
   const image=d.image||(id.match(/^\d+$/)?`photos/${id}.jpg`:null);
   const available=d.available===false?false:true;
   const delistedAt=d.delistedAt||null;
-  // Non disponibili: restano in lista/mappa 48h da delistedAt, poi SKIP.
+  // Non disponibili: fuori mappa subito (foglio li tiene in rosso).
   const item={
    id:String(id),
    url:cleanUrl(url),
