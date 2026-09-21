@@ -603,5 +603,30 @@
     "available": true,
     "source": "idealista_gmail_handoff_2026-09-21",
     "note": "2 camere matrimoniali; 1 bagno; libero da 1 novembre; posto auto H1.45"
+  },
+  "132639692": {
+    "title": "Trilocale Stazione - Reggiane buono stato",
+    "zone": "Stazione - Reggiane",
+    "address": "Stazione - Reggiane, Reggio Emilia",
+    "price": 540,
+    "expenses": null,
+    "mq": 90,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "3°",
+    "furnished": null,
+    "garage": null,
+    "elevator": null,
+    "lat": 44.6991394,
+    "lng": 10.6486026,
+    "approx": true,
+    "image": "photos/132639692.jpg",
+    "url": "https://www.immobiliare.it/annunci/132639692/",
+    "link": "https://www.immobiliare.it/annunci/132639692/",
+    "available": true,
+    "source": "immobiliare_gmail_handoff_2026-09-21",
+    "note": "Da alert Immobiliare 16:44; 90 mq; 3 locali (2 camere tipiche); 1 bagno; 3° piano; spese non indicate nell'email. Dettagli arredo/garage/ascensore da verificare in visita.",
+    "descriptionShort": "Trilocale 90 mq zona Stazione-Reggiane, 3° piano, 540 €/mese. Spese non indicate."
   }
 }
