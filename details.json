@@ -607,5 +607,30 @@
     "source": "idealista_immobiliare_gmail_handoff_2026-09-21",
     "note": "Indicato per coppia; richiesto indeterminato o referenze (non esclusione esplicita 3 coinquilini). Mirror Immobiliare https://www.immobiliare.it/annunci/132460032/; Casa.it https://www.casa.it/immobili/54791258/. 78 mq; 3 locali; 3° piano con ascensore; 1 bagno; spese/arredo non indicati nell'email. Pin Nominatim Piazza Fontanesi (approx).",
     "descriptionShort": "Trilocale 78 mq Viale Monte Grappa / Fontanesi, 3° piano ascensore, 550 €/mese. Note: coppia/indeterminato/referenze."
+  },
+  "36909265": {
+    "title": "Trilocale Piazza Fontanesi-Strada Alta",
+    "zone": "Piazza Fontanesi-Strada Alta",
+    "address": "Piazza Fontanesi-Strada Alta, Reggio Emilia",
+    "price": 740,
+    "expenses": null,
+    "mq": 90,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "1°",
+    "furnished": null,
+    "garage": null,
+    "elevator": false,
+    "lat": 44.6945471,
+    "lng": 10.6311729,
+    "approx": true,
+    "image": "photos/36909265.jpg",
+    "url": "https://www.idealista.it/immobile/36909265/",
+    "link": "https://www.idealista.it/immobile/36909265/",
+    "available": true,
+    "source": "idealista_casa_gmail_handoff_2026-09-23",
+    "note": "Solo messaggi: indicare nominativi, composizione nucleo e referenze lavorative (no telefonate). Mirror Casa.it https://www.casa.it/immobili/54803763/ (zona etichetta Ospedale-San Pellegrino; stessa foto CDN ee/9a/cf/840325089). 90 mq; 3 locali; 1° piano senza ascensore; 1 bagno; spese/arredo non indicati nelle email. Pin Nominatim Piazza Fontanesi (approx).",
+    "descriptionShort": "Trilocale 90 mq Fontanesi, 1° senza ascensore, 740 €/mese. Contatto solo messaggi con nominativi/nucleo/referenze."
   }
 }
