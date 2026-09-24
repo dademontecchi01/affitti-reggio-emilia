@@ -588,22 +588,22 @@
     "descriptionShort": "Trilocale 90 mq Fontanesi, 1° senza ascensore, 740 €/mese. Contatto solo messaggi con nominativi/nucleo/referenze."
   },
   "36914033": {
-    "title": "Appartamento Rosta Nuova / Ospedale ristrutturato",
-    "zone": "Rosta Nuova",
-    "address": "Rosta Nuova / Ospedale - Villaggio Manenti, Reggio Emilia",
+    "title": "Appartamento Ospedale-San Pellegrino ristrutturato arredato",
+    "zone": "Ospedale-San Pellegrino",
+    "address": "Ospedale-San Pellegrino (Centro), Reggio Emilia",
     "price": 820,
-    "expenses": null,
+    "expenses": 300,
     "mq": 120,
     "rooms": 5,
     "bedrooms": 3,
     "baths": 1,
     "floor": "5°",
-    "furnished": null,
-    "garage": false,
+    "furnished": true,
+    "garage": true,
     "parking": true,
     "elevator": true,
-    "lat": 44.6879405,
-    "lng": 10.6378409,
+    "lat": 44.6835174,
+    "lng": 10.6301245,
     "approx": true,
     "image": "photos/36914033.jpg",
     "url": "https://www.idealista.it/immobile/36914033/",
@@ -613,6 +613,7 @@
       "https://www.immobiliare.it/annunci/132797588/"
     ],
     "available": true,
-    "note": "Idealista 36914033 + Casa.it 54812461 + Immobiliare 132797588 stesso apt (foto CDN 840444883); 820€; 120mq; 5 locali (Imm dice 3 locali); 5° con ascensore; 1 posto auto; recentemente ristrutturato; agenzia Studio Dugoni; zone email: Rosta Nuova / Ospedale-San Pellegrino / Villaggio Manenti; Immo Bilio ~13:00 24/09"
+    "note": "Idealista 36914033 + Casa.it 54812461 + Immobiliare 132797588 stesso apt; 820€ + 300€ spese; 120mq; 5 locali / 3 camere (2 matrimoniali + 1 tre quarti); 5° con ascensore; box singolo; completamente arredato con elettrodomestici, cucina abitabile; ristrutturato; contratto lungo termine; richieste referenze; Studio Dugoni (0522 1686536); Immo Bilio ~13:00 24/09 (dettagli da Casa.it)",
+    "descriptionShort": "120 mq Ospedale-San Pellegrino, 5° con ascensore, arredato, box, 820€+300 spese."
   }
 }
