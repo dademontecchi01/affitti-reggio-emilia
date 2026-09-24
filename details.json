@@ -586,5 +586,33 @@
     "source": "idealista_casa_gmail_handoff_2026-09-23",
     "note": "Solo messaggi: indicare nominativi, composizione nucleo e referenze lavorative (no telefonate). Mirror Casa.it https://www.casa.it/immobili/54803763/ (zona etichetta Ospedale-San Pellegrino; stessa foto CDN ee/9a/cf/840325089). 90 mq; 3 locali; 1° piano senza ascensore; 1 bagno; spese/arredo non indicati nelle email. Pin Nominatim Piazza Fontanesi (approx).",
     "descriptionShort": "Trilocale 90 mq Fontanesi, 1° senza ascensore, 740 €/mese. Contatto solo messaggi con nominativi/nucleo/referenze."
+  },
+  "36914033": {
+    "title": "Appartamento Rosta Nuova / Ospedale ristrutturato",
+    "zone": "Rosta Nuova",
+    "address": "Rosta Nuova / Ospedale - Villaggio Manenti, Reggio Emilia",
+    "price": 820,
+    "expenses": null,
+    "mq": 120,
+    "rooms": 5,
+    "bedrooms": 3,
+    "baths": 1,
+    "floor": "5°",
+    "furnished": null,
+    "garage": false,
+    "parking": true,
+    "elevator": true,
+    "lat": 44.6879405,
+    "lng": 10.6378409,
+    "approx": true,
+    "image": "photos/36914033.jpg",
+    "url": "https://www.idealista.it/immobile/36914033/",
+    "source": "idealista_email_2026-09-24",
+    "mirrors": [
+      "https://www.casa.it/immobili/54812461/",
+      "https://www.immobiliare.it/annunci/132797588/"
+    ],
+    "available": true,
+    "note": "Idealista 36914033 + Casa.it 54812461 + Immobiliare 132797588 stesso apt (foto CDN 840444883); 820€; 120mq; 5 locali (Imm dice 3 locali); 5° con ascensore; 1 posto auto; recentemente ristrutturato; agenzia Studio Dugoni; zone email: Rosta Nuova / Ospedale-San Pellegrino / Villaggio Manenti; Immo Bilio ~13:00 24/09"
   }
 }
