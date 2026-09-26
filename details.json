@@ -65,26 +65,6 @@
     "maxPeople": 2,
     "url": "https://www.immobiliare.it/annunci/132257644/"
   },
-  "129564290": {
-    "title": "Quadrilocale via Bernardino Telesio 16",
-    "zone": "Ospedale / Villaggio Manenti",
-    "address": "Via Bernardino Telesio 16",
-    "price": 700,
-    "expenses": 25,
-    "mq": 105,
-    "rooms": 4,
-    "bedrooms": 2,
-    "baths": 1,
-    "floor": "2°",
-    "furnished": true,
-    "garage": false,
-    "elevator": false,
-    "lat": 44.6785885,
-    "lng": 10.6279395,
-    "approx": false,
-    "image": "photos/129564290.jpg",
-    "url": "https://www.immobiliare.it/annunci/129564290/"
-  },
   "125903239": {
     "title": "Trilocale viale Piave",
     "zone": "Centro Storico",
