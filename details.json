@@ -577,5 +577,36 @@
     "available": true,
     "note": "Idealista 36914033 + Casa.it 54812461 + Immobiliare 132797588 stesso apt; 820€ + 300€ spese; 120mq; 5 locali / 3 camere (2 matrimoniali + 1 tre quarti); 5° con ascensore; box singolo; completamente arredato con elettrodomestici, cucina abitabile; ristrutturato; contratto lungo termine; richieste referenze; Studio Dugoni (0522 1686536); Immo Bilio ~13:00 24/09 (dettagli da Casa.it)",
     "descriptionShort": "120 mq Ospedale-San Pellegrino, 5° con ascensore, arredato, box, 820€+300 spese."
+  },
+  "36973238": {
+    "title": "Appartamento Porta Castello / Rosta Nuova semi-arredato",
+    "zone": "Rosta Nuova",
+    "address": "Porta Castello / Rosta Nuova, Reggio Emilia",
+    "price": 600,
+    "expenses": null,
+    "mq": 90,
+    "rooms": 5,
+    "bedrooms": 3,
+    "baths": 1,
+    "floor": "rialzato",
+    "furnished": true,
+    "furnished_note": "semi-arredato; cucina abitabile; cantina; balcone",
+    "garage": false,
+    "elevator": false,
+    "cellar": true,
+    "balcony": true,
+    "lat": 44.6879405,
+    "lng": 10.6378409,
+    "approx": true,
+    "image": "photos/36973238.jpg",
+    "url": "https://www.idealista.it/immobile/36973238/",
+    "link": "https://www.idealista.it/immobile/36973238/",
+    "available": true,
+    "source": "idealista_casa_gmail_handoff_2026-09-28",
+    "mirrors": [
+      "https://www.casa.it/immobili/54844194/"
+    ],
+    "agency": "Novellara Immobiliare (Corso Garibaldi 2, Novellara) — Marcello; rif. LR1-753; tel +3905221686255",
+    "note": "Immo Bilio ~15:49 28/09: Idealista 36973238 + Casa.it 54844194 stesso apt (foto CDN 842451096); Porta Castello/Rosta Nuova; 90mq; 5 locali / 3 camere; piano rialzato; 600€ spese n/d; semi-arredato; cantina; balcone; no box; richiesto contratto tempo indeterminato (ideale medici/infermieri); Novellara Immobiliare / Marcello; aggiunto in mappa"
   }
 }
