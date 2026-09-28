@@ -608,5 +608,37 @@
     ],
     "agency": "Novellara Immobiliare (Corso Garibaldi 2, Novellara) — Marcello; rif. LR1-753; tel +3905221686255",
     "note": "Immo Bilio ~15:49 28/09: Idealista 36973238 + Casa.it 54844194 stesso apt (foto CDN 842451096); Porta Castello/Rosta Nuova; 90mq; 5 locali / 3 camere; piano rialzato; 600€ spese n/d; semi-arredato; cantina; balcone; no box; richiesto contratto tempo indeterminato (ideale medici/infermieri); Novellara Immobiliare / Marcello; aggiunto in mappa"
+  },
+  "36976640": {
+    "title": "Trilocale Via Luigi Chiesi 5 parzialmente arredato",
+    "zone": "Stazione - Reggiane / Ospizio",
+    "address": "Via Luigi Chiesi 5, Stazione - Reggiane, Reggio Emilia",
+    "price": 700,
+    "expenses": 0,
+    "expenses_note": "Nessuna spesa condominiale (Immobiliare)",
+    "mq": 110,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "rialzato",
+    "furnished": true,
+    "furnished_note": "parzialmente arredato; cucina abitabile; ripostiglio; cantina; no balcone",
+    "garage": false,
+    "elevator": false,
+    "cellar": true,
+    "balcony": false,
+    "lat": 44.6952273,
+    "lng": 10.6438874,
+    "approx": false,
+    "image": "photos/36976640.jpg",
+    "url": "https://www.idealista.it/immobile/36976640/",
+    "link": "https://www.idealista.it/immobile/36976640/",
+    "available": true,
+    "source": "idealista_immobiliare_gmail_2026-09-28_19",
+    "mirrors": [
+      "https://www.immobiliare.it/annunci/132952914/"
+    ],
+    "agency": "Affiliato Tecnocasa Studio San Maurizio SRL - Alessandro Pasquali; rif. 61277214; email RECAG@TECNOCASA.IT",
+    "note": "Immo Bilio ~19:11 28/09: Idealista 36976640 + Immobiliare 132952914 stesso apt Via Chiesi 5; Stazione-Reggiane/Ospizio; 110mq; 3 locali / 2 camere; piano rialzato; 700€ spese condo 0; parzialmente arredato; cantina; no box; no animali; preferito indeterminato + referenze; primo contatto solo email; aggiunto in mappa"
   }
 }
