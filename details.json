@@ -669,5 +669,31 @@
     "note": "Immo Bilio ~12:50 29/09: Immobiliare 127533210 Centro Storico; 80mq; 3 locali / 2 camere matrimoniali; piano 1/3 no ascensore; 900€ (era 1000 -10%); spese condo n/d; completamente arredato; cantina + soffitta condominiale; contratto 4+4; disponibilità da 01/07/2026; vicino Parcheggio Aci; no box dedicato",
     "contract": "4+4",
     "available_from": "2026-07-01"
+  },
+  "54849047": {
+    "title": "Appartamento Via Umberto Poli arredato 3 camere",
+    "zone": "Rosta Nuova",
+    "address": "Via Umberto Poli, Rosta Nuova, Reggio Emilia",
+    "price": 950,
+    "expenses": null,
+    "mq": 110,
+    "rooms": 5,
+    "bedrooms": 3,
+    "baths": 1,
+    "floor": "3°",
+    "furnished": true,
+    "furnished_note": "completamente arredato con mobili nuovi; cucinotto; cantina; climatizzato",
+    "garage": false,
+    "elevator": false,
+    "cellar": true,
+    "lat": 44.6886685,
+    "lng": 10.6364645,
+    "approx": true,
+    "image": "photos/54849047.jpg",
+    "url": "https://www.casa.it/immobili/54849047/",
+    "link": "https://www.casa.it/immobili/54849047/",
+    "available": true,
+    "source": "casa_it_gmail_alert_2026-09-29_14",
+    "note": "Immo Bilio ~14:30 29/09: Casa.it 54849047 Via Umberto Poli Rosta Nuova; 110mq; 5 locali / 3 camere; piano 3 no ascensore; 950€ spese n/d; completamente arredato; cantina; no box; posizione via senza civico (approx)"
   }
 }
