@@ -668,5 +668,30 @@
       "https://www.casa.it/immobili/54863455/"
     ],
     "note": "Immo Bilio ~14:20 30/09: Idealista 37000621 + Casa.it 54863455 stesso apt Via Vittorio Marchi San Maurizio; 70mq; 3 locali / 2 camere; 2 piano no ascensore; 600€ spese n/d; completamente arredato; no box; via senza civico (approx)"
+  },
+  "37002545": {
+    "title": "Trilocale Via Antonio Fogazzaro Baragalla",
+    "zone": "Baragalla / Villaggio Catellani",
+    "address": "Via Antonio Fogazzaro, Baragalla, Reggio Emilia",
+    "price": 800,
+    "expenses": null,
+    "mq": 90,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": null,
+    "floor": "2°",
+    "furnished": null,
+    "furnished_note": "arredamento non indicato nell'alert Idealista (pagina 403 DataDome); desc ~100mq ambienti spaziosi",
+    "garage": null,
+    "elevator": false,
+    "lat": 44.6708855,
+    "lng": 10.6038337,
+    "approx": true,
+    "image": "photos/37002545.jpg",
+    "url": "https://www.idealista.it/immobile/37002545/",
+    "link": "https://www.idealista.it/immobile/37002545/",
+    "available": true,
+    "source": "idealista_gmail_alert_2026-09-30_16",
+    "note": "Immo Bilio ~16:50 30/09: Idealista 37002545 Via Antonio Fogazzaro Baragalla; 800€; 90mq (desc ~100); trilocale 3 locali / 2 camere tipiche; 2° piano no ascensore; arredamento/box n/d (Idealista 403); Baragalla OK; aggiunto da alert"
   }
 }
