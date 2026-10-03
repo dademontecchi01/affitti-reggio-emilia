@@ -697,5 +697,33 @@
     "agency": "Immobiliare Artecasa / Simona Chiari",
     "note": "Immo Bilio 19:00 02/10: Idealista price-drop 1000->900EUR Duomo 88mq 4 locali 2 camere arredamento nuovo; CDP ok; coords approx quartiere Duomo; foto CDN",
     "maxPeople": null
+  },
+  "133205816": {
+    "title": "Trilocale via del Portone, Centro Storico, Reggio Emilia",
+    "zone": "Centro Storico",
+    "address": "Via del Portone, Centro Storico, Reggio Emilia",
+    "price": 760,
+    "expenses": null,
+    "costNote": "Scheda costi: 80 euro/mese. Descrizione: circa 50 euro/mese piu consumi acqua a persona. Non unire le due cifre.",
+    "mq": 80,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "2°",
+    "furnished": true,
+    "furnished_note": "arredato (tutto l'appartamento, non solo la cucina)",
+    "garage": null,
+    "elevator": false,
+    "lat": 44.6979055,
+    "lng": 10.6245817,
+    "approx": true,
+    "image": "photos/133205816.jpg",
+    "url": "https://www.immobiliare.it/annunci/133205816/",
+    "link": "https://www.immobiliare.it/annunci/133205816/",
+    "available": true,
+    "source": "immobiliare_verified_2026-10-03_12",
+    "agency": "Immobiliare Leone",
+    "note": "Immo Bilio 03/10 ~12:57: Immobiliare 133205816 Via del Portone Centro Storico 760 euro 80mq 3 locali 2 camere 1 bagno 2 piano senza ascensore arredato; spese scheda 80 euro/mese e descrizione circa 50 euro/mese piu acqua a persona; posto auto non indicato; agenzia Immobiliare Leone; coords approx centroide Nominatim della via (senza civico); foto CDN; aggiunto in mappa",
+    "maxPeople": null
   }
 }
