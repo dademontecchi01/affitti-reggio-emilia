@@ -602,8 +602,8 @@
     "bedrooms": 2,
     "baths": null,
     "floor": "2°",
-    "furnished": null,
-    "furnished_note": "arredamento non indicato nell'alert Idealista (pagina 403 DataDome); desc ~100mq ambienti spaziosi",
+    "furnished": true,
+    "furnished_note": "completamente arredato (da scheda Casa.it mirror 54865140)",
     "garage": null,
     "elevator": false,
     "lat": 44.6708855,
@@ -614,7 +614,10 @@
     "link": "https://www.idealista.it/immobile/37002545/",
     "available": true,
     "source": "idealista_gmail_alert_2026-09-30_16",
-    "note": "Immo Bilio ~16:50 30/09: Idealista 37002545 Via Antonio Fogazzaro Baragalla; 800€; 90mq (desc ~100); trilocale 3 locali / 2 camere tipiche; 2° piano no ascensore; arredamento/box n/d (Idealista 403); Baragalla OK; aggiunto da alert"
+    "note": "Immo Bilio ~16:50 30/09: Idealista 37002545 Via Antonio Fogazzaro Baragalla; 800€; 90mq (desc ~100); trilocale 3 locali / 2 camere tipiche; 2° piano no ascensore; arredamento/box n/d (Idealista 403); Baragalla OK; aggiunto da alert | mirror Casa.it 54865140 (suggerimento mail 03/10, stesso Via Fogazzaro 800€/90mq)",
+    "mirrors": [
+      "https://www.casa.it/immobili/54865140/"
+    ]
   },
   "133095550": {
     "title": "Trilocale Centro Storico arredato (rif. A397/2)",
