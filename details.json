@@ -23,27 +23,6 @@
     "source": "casa_it_email_2026-09-20",
     "note": "Mirror Idealista 36880586; uso transitorio studenti/lavoratori; 3 camere; max 3 persone; Immo Bilio 19:00 20/09"
   },
-  "132257644": {
-    "title": "Trilocale Via Ettore Petrolini",
-    "zone": "Rosta Nuova",
-    "address": "Via Ettore Petrolini, Rosta Nuova",
-    "price": 650,
-    "expenses": null,
-    "mq": 86,
-    "rooms": 3,
-    "bedrooms": 2,
-    "baths": 1,
-    "floor": null,
-    "furnished": null,
-    "garage": false,
-    "elevator": null,
-    "lat": 44.6862881,
-    "lng": 10.6445602,
-    "approx": false,
-    "image": "photos/132257644.jpg",
-    "maxPeople": 2,
-    "url": "https://www.immobiliare.it/annunci/132257644/"
-  },
   "125903239": {
     "title": "Trilocale viale Piave",
     "zone": "Centro Storico",
