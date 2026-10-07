@@ -41,7 +41,13 @@
     "lng": 10.6374308,
     "approx": true,
     "image": "photos/125903239.jpg",
-    "url": "https://www.immobiliare.it/annunci/125903239/"
+    "url": "https://www.immobiliare.it/annunci/125903239/",
+    "mirrors": [
+      "https://www.casa.it/immobili/53092040/"
+    ],
+    "agency": "Agenzia Domus (domusreggio.it)",
+    "agency_ref": "DOMA-1761",
+    "note": "Trilocale Viale Piave gia in mappa come Immobiliare 125903239. | Mirror Casa.it 53092040 (alert 07/10): stesso Viale Piave 900 euro 111 mq 3 locali 2 bagni 3° no ascensore posto auto scoperto DOMA-1761; non aggiunto secondo pin."
   },
   "54516896": {
     "title": "Quadrilocale Ospedale",
@@ -120,7 +126,8 @@
     "lng": 10.6482,
     "approx": true,
     "image": "photos/53356355.jpg",
-    "url": "https://www.casa.it/immobili/53356355/"
+    "url": "https://www.casa.it/immobili/53356355/",
+    "note": "Quadrilocale Ospizio gia in mappa. | Check 07/10: annuncio ancora attivo (Mirabello-Stazione/Ospizio, 1000 euro, 120 mq, 4 locali, 2 camere, 2 bagni, 7° con ascensore, box, terrazzo 30 mq, rif 1746); gia in mappa, non riduplicato."
   },
   "54567874": {
     "title": "Quadrilocale Via Bonifazio Asioli",
@@ -417,7 +424,7 @@
       "https://www.immobiliare.it/annunci/132797588/"
     ],
     "available": true,
-    "note": "Idealista 36914033 + Casa.it 54812461 + Immobiliare 132797588 stesso apt; 820€ + 300€ spese; 120mq; 5 locali / 3 camere (2 matrimoniali + 1 tre quarti); 5° con ascensore; box singolo; completamente arredato con elettrodomestici, cucina abitabile; ristrutturato; contratto lungo termine; richieste referenze; Studio Dugoni (0522 1686536); Immo Bilio ~13:00 24/09 (dettagli da Casa.it)",
+    "note": "Idealista 36914033 + Casa.it 54812461 + Immobiliare 132797588 stesso apt; 820€ + 300€ spese; 120mq; 5 locali / 3 camere (2 matrimoniali + 1 tre quarti); 5° con ascensore; box singolo; completamente arredato con elettrodomestici, cucina abitabile; ristrutturato; contratto lungo termine; richieste referenze; Studio Dugoni (0522 1686536); Immo Bilio ~13:00 24/09 (dettagli da Casa.it) | Check 07/10 Casa.it 54812461 ancora attivo (820 euro + 300 spese, 120 mq, 5 locali / 3 camere, 5° ascensore, box); gia mirror, non aggiunto secondo pin.",
     "descriptionShort": "120 mq Ospedale-San Pellegrino, 5° con ascensore, arredato, box, 820€+300 spese."
   },
   "36973238": {
@@ -448,7 +455,7 @@
     "mirrors": [
       "https://www.casa.it/immobili/54844194/"
     ],
-    "agency": "Novellara Immobiliare (Corso Garibaldi 2, Novellara) — Marcello; rif. LR1-753; tel +3905221686255",
+    "agency": "Novellara Immobiliare (Corso Garibaldi 2, Novellara) - Marcello; rif. LR1-753; tel +3905221686255",
     "note": "Immo Bilio ~15:49 28/09: Idealista 36973238 + Casa.it 54844194 stesso apt (foto CDN 842451096); Porta Castello/Rosta Nuova; 90mq; 5 locali / 3 camere; piano rialzato; 600€ spese n/d; semi-arredato; cantina; balcone; no box; richiesto contratto tempo indeterminato (ideale medici/infermieri); Novellara Immobiliare / Marcello; aggiunto in mappa"
   },
   "54849047": {
@@ -678,7 +685,9 @@
     "image": "photos/133337580.jpg",
     "url": "https://www.immobiliare.it/annunci/133337580/",
     "link": "https://www.immobiliare.it/annunci/133337580/",
-    "mirrors": [],
+    "mirrors": [
+      "https://www.casa.it/immobili/54924622/"
+    ],
     "available": true,
     "source": "immobiliare_2026-10-07",
     "agency": "Agenzia Domus (domusreggio.it)",
@@ -686,6 +695,143 @@
     "contract": null,
     "maxPeople": null,
     "extras": "balcone e terrazzo; soffitta comune; ascensore; ultimo piano di 6; riscaldamento centralizzato con contacalorie",
-    "note": "Immo Bilio 07/10: Immobiliare 133337580 Via Mirabello, Mirabello; 740 euro/mese + 130 spese condo; 99 mq; 4 locali / 3 camere + sala + cucina abitabile; 1 bagno; 6° (ultimo) con ascensore; ammobiliato/completamente arredato; balcone e terrazzo; soffitta comune; no box/garage; Agenzia Domus rif DOMA-1814; Solo studenti o lavoratori annuali; libero da fine ottobre 2026; coords approx da pagina Immobiliare; foto CDN l-c.jpg id 2024140466; aggiunto in mappa; CDN preferito https://dademontecchi01.github.io/affitti-reggio-emilia/photos/133337580.jpg"
+    "note": "Immo Bilio 07/10: Immobiliare 133337580 Via Mirabello, Mirabello; 740 euro/mese + 130 spese condo; 99 mq; 4 locali / 3 camere + sala + cucina abitabile; 1 bagno; 6° (ultimo) con ascensore; ammobiliato/completamente arredato; balcone e terrazzo; soffitta comune; no box/garage; Agenzia Domus rif DOMA-1814; Solo studenti o lavoratori annuali; libero da fine ottobre 2026; coords approx da pagina Immobiliare; foto CDN l-c.jpg id 2024140466; aggiunto in mappa; CDN preferito https://dademontecchi01.github.io/affitti-reggio-emilia/photos/133337580.jpg | Verifica 07/10 Casa.it 54924622: stessa casa (99 mq, 6° ultimo, Domus DOMA-1814, 740 euro + 130 spese); mirror aggiunto, non secondo pin."
+  },
+  "54927029": {
+    "title": "Trilocale Via Saverio Mercadante 2 Regina Pacis con giardino",
+    "zone": "Regina Pacis",
+    "address": "Via Saverio Mercadante 2, Regina Pacis, Reggio Emilia",
+    "price": 450,
+    "expenses": 50,
+    "costNote": "Spese condominiali 50 euro/mese da corrispondere ogni quattro mesi; posto auto incluso nel canone; riscaldamento autonomo",
+    "mq": 96,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "piano terra",
+    "furnished": true,
+    "furnished_note": "completamente arredato",
+    "garage": false,
+    "elevator": false,
+    "cellar": true,
+    "lat": 44.6938118,
+    "lng": 10.6117943,
+    "approx": true,
+    "image": "photos/54927029.jpg",
+    "url": "https://www.casa.it/immobili/54927029/",
+    "link": "https://www.casa.it/immobili/54927029/",
+    "mirrors": [],
+    "available": true,
+    "source": "casa_it_2026-10-07",
+    "agency": null,
+    "agency_ref": null,
+    "contract": "4+4 cedolare secca",
+    "maxPeople": null,
+    "extras": "giardino privato, cantina, 2 posti auto scoperti, riscaldamento autonomo, accessibile mobilita ridotta, animali ammessi",
+    "note": "Immo Bilio 07/10 ~21:00: Casa.it 54927029 Via Saverio Mercadante 2 Regina Pacis; 450 euro/mese + 50 spese condo; 96 mq; 3 locali / sala + 2 camere matrimoniali; 1 bagno con antibagno; piano terra di 4 senza ascensore; completamente arredato; cantina; 2 posti auto scoperti; giardino privato; contratto 4+4 cedolare secca; libero da novembre; richiesto almeno un TI; animali ammessi; indirizzo indicativo privacy; coords Nominatim civico 2; foto CDN images-1.casa.it 845465385; aggiunto in mappa"
+  },
+  "54647493": {
+    "title": "Trilocale Via Astico Regina Pacis arredato garage doppio",
+    "zone": "Regina Pacis",
+    "address": "Via Astico, Regina Pacis, Reggio Emilia",
+    "price": 780,
+    "expenses": 0,
+    "costNote": "Nessuna spesa condominiale (utenze a parte); posto auto/garage incluso nel canone; cauzione 2 mesi",
+    "mq": 110,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 2,
+    "floor": "2°",
+    "furnished": true,
+    "furnished_note": "completamente arredato",
+    "garage": true,
+    "elevator": false,
+    "cellar": false,
+    "lat": 44.7022102,
+    "lng": 10.6171121,
+    "approx": true,
+    "image": "photos/54647493.jpg",
+    "url": "https://www.casa.it/immobili/54647493/",
+    "link": "https://www.casa.it/immobili/54647493/",
+    "mirrors": [],
+    "available": true,
+    "source": "casa_it_2026-10-07",
+    "agency": "Real Home (ufficio ricerca/informazione, no mediazione classica)",
+    "agency_ref": null,
+    "contract": "transitorio 1 anno (prolungabile)",
+    "maxPeople": 3,
+    "extras": "garage doppio, solaio, 2 balconi, giardino/area esterna comune, aria condizionata, riscaldamento autonomo, lavatrice",
+    "note": "Immo Bilio 07/10 ~21:00: Casa.it 54647493 Via Astico Sant'Angelo-Regina Pacis; 780 euro/mese senza spese condo; 110 mq; 3 locali / soggiorno + cucina separata + 2 camere matrimoniali; 2 bagni; 2 balconi; 2° e ultimo piano rialzato senza ascensore; completamente arredato; garage doppio; solaio; aria condizionata; cauzione 2 mesi; ATTENZIONE: contratto transitorio 1 anno con possibilita di prolungamento (scheda Casa.it dice anche lungo termine); max 3 persone / coppia referenziate con contratto lavoro; no animali; disponibile da subito; indirizzo indicativo; coords Nominatim centroide Via Astico RE; foto CDN images-1.casa.it 833261062; aggiunto in mappa"
+  },
+  "54871426": {
+    "title": "Appartamento Via Nazario Sauro Gardenia-Tondo 3 camere",
+    "zone": "Gardenia-Tondo",
+    "address": "Via Nazario Sauro, Gardenia-Tondo, Reggio Emilia",
+    "price": 750,
+    "expenses": 80,
+    "costNote": "Spese condominiali 80 euro/mese; box incluso nel canone; cauzione 3 mesi; riscaldamento autonomo",
+    "mq": 120,
+    "rooms": 5,
+    "bedrooms": 3,
+    "baths": 2,
+    "floor": "2°",
+    "furnished": true,
+    "furnished_note": "completamente arredato",
+    "garage": true,
+    "elevator": false,
+    "cellar": true,
+    "lat": 44.7028846,
+    "lng": 10.6214278,
+    "approx": true,
+    "image": "photos/54871426.jpg",
+    "url": "https://www.casa.it/immobili/54871426/",
+    "link": "https://www.casa.it/immobili/54871426/",
+    "mirrors": [
+      "https://www.trovacasa.it/annunci/re-tc-45504-73380831"
+    ],
+    "available": true,
+    "source": "casa_it_2026-10-07",
+    "agency": null,
+    "agency_ref": null,
+    "contract": "lungo termine (4+4 / 3+2)",
+    "maxPeople": 4,
+    "extras": "box singolo 18 mq, cantina, balconi, aria condizionata, riscaldamento autonomo",
+    "note": "Immo Bilio 07/10 ~21:00: Casa.it 54871426 Via Nazario Sauro Gardenia-Tondo (Santo Stefano); 750 euro/mese + 80 spese condo; 120 mq; 5 locali / soggiorno + cucina abitabile + 3 camere + ripostiglio; 2 bagni; 2° piano senza ascensore; completamente arredato; cantina e ampio garage/box 18 mq; aria condizionata; no animali; solo referenziati TI max 3/4 persone; disponibile fine ottobre; non telefonare (mandare nome cognome nucleo telefono attivita); coords Nominatim centroide Via Nazario Sauro RE; foto TrovaCasa pic 2020049556 (mirror re-tc-45504-73380831); aggiunto in mappa"
+  },
+  "54616656": {
+    "title": "Trilocale Via Gorizia Regina Pacis ammobiliato",
+    "zone": "Regina Pacis",
+    "address": "Via Gorizia, Regina Pacis, Reggio Emilia",
+    "price": 600,
+    "expenses": 110,
+    "costNote": "Spese condominiali 110 euro/mese (riscaldamento centralizzato con contacalorie); posto auto incluso nel canone",
+    "mq": 75,
+    "rooms": 3,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "3°",
+    "furnished": true,
+    "furnished_note": "completamente arredato / ammobiliato",
+    "garage": false,
+    "elevator": false,
+    "cellar": false,
+    "lat": 44.6965934,
+    "lng": 10.6110519,
+    "approx": true,
+    "image": "photos/54616656.jpg",
+    "url": "https://www.casa.it/immobili/54616656/",
+    "link": "https://www.casa.it/immobili/54616656/",
+    "mirrors": [
+      "https://www.trovacasa.it/annunci/re-tc-51908-72898383",
+      "https://www.mioaffitto.it/affitto_appartamento_reggio-emilia/appartamento-arredato-centro-regina-pacis_8500336.html"
+    ],
+    "available": true,
+    "source": "casa_it_2026-10-07",
+    "agency": "Agenzia Domus (domusreggio.it)",
+    "agency_ref": "DOMA-1803",
+    "contract": "lungo termine (4+4 / 3+2)",
+    "maxPeople": null,
+    "extras": "2 balconi, 1 posto auto scoperto, riscaldamento centralizzato con contacalorie, classe C",
+    "note": "Immo Bilio 07/10 ~21:00: Casa.it 54616656 Via Gorizia Regina Pacis; 600 euro/mese + 110 spese condo; 75 mq; 3 locali / cucina abitabile + sala + 1 camera matrimoniale + 1 mezza camera; 1 bagno finestrato; 2 balconi; 3° piano senza ascensore; completamente arredato; 1 posto auto scoperto; ATTENZIONE: seconda camera e 'mezza camera' (nel dubbio aggiunto, verificare se sufficiente come 2a camera); libero da subito; solo referenziati; Agenzia Domus rif DOMA-1803; coords Nominatim Via Gorizia Regina Pacis RE; foto TrovaCasa pic 1737778470; aggiunto in mappa"
   }
 }
