@@ -687,7 +687,8 @@
     "url": "https://www.immobiliare.it/annunci/133278178/",
     "link": "https://www.immobiliare.it/annunci/133278178/",
     "mirrors": [
-      "https://www.casa.it/immobili/54910393/"
+      "https://www.casa.it/immobili/54910393/",
+      "https://www.idealista.it/immobile/16589436/"
     ],
     "available": true,
     "source": "casa_it_mirror_immobiliare_2026-10-06",
@@ -695,7 +696,7 @@
     "agency_ref": "RA0447",
     "maxPeople": 2,
     "extras": "cantina, rastrelliera bici comune, clima, riscaldamento autonomo",
-    "note": "Immo Bilio 06/10 ~13:15: Immobiliare 133278178 (alert 06/10) DataDome 403, Jina CAPTCHA; mirror Casa.it 54910393 Via Belfiore 7, 750 euro, 94 mq, 3 locali, 1 bagno: ingresso su soggiorno doppio affaccio, cucina abitabile, due camere matrimoniali (una ora studio con divano letto), antibagno lavanderia, bagno ristrutturato; 2° piano di 3 senza ascensore; arredato da descrizione (scheda dice non arredato); spese 30 euro/mese; cauzione 3 mesi; cantina; ATTENZIONE: annuncio dice 'Massimo 2 persone referenziate'; libero da gennaio 2027; visite sabato 24/10 9:30-13:00; classe G; agenzia non indicata (rif. RA0447); coords Nominatim civico 7; foto CDN Immobiliare l-c.jpg; aggiunto in mappa"
+    "note": "Immo Bilio 06/10 ~13:15: Immobiliare 133278178 (alert 06/10) DataDome 403, Jina CAPTCHA; mirror Casa.it 54910393 Via Belfiore 7, 750 euro, 94 mq, 3 locali, 1 bagno: ingresso su soggiorno doppio affaccio, cucina abitabile, due camere matrimoniali (una ora studio con divano letto), antibagno lavanderia, bagno ristrutturato; 2° piano di 3 senza ascensore; arredato da descrizione (scheda dice non arredato); spese 30 euro/mese; cauzione 3 mesi; cantina; ATTENZIONE: annuncio dice 'Massimo 2 persone referenziate'; libero da gennaio 2027; visite sabato 24/10 9:30-13:00; classe G; agenzia non indicata (rif. RA0447); coords Nominatim civico 7; foto CDN Immobiliare l-c.jpg; aggiunto in mappa | Mirror Idealista 16589436 (alert 07/10, stesso rif. RA0447 Via Belfiore 7): non aggiunto secondo pin."
   },
   "35564977": {
     "title": "Trilocale Porta Castello, zona Gattaglio, arredato (rif. AM062/1)",
@@ -729,5 +730,40 @@
     "contract": "lungo termine (4+4 / 3+2)",
     "maxPeople": null,
     "note": "Immo Bilio 06/10 ~13:15: Idealista 35564977 (riepilogo 06/10) DataDome 403, Jina CAPTCHA; mirror Casa.it 54896104 (stessa foto 795637366, stesso rif. AM062/1): 550 euro spese condominiali incluse, utenze autonome, 62 mq, 3 locali: ingresso su soggiorno con angolo cottura, camera matrimoniale, camera singola, bagno finestrato con doccia e lavatrice; clima; ristrutturato; 1° piano senza ascensore; completamente arredato; cauzione 3 mesi; libero dal 01/01/2027; seconda camera singola; agenzia non indicata; coords approx centroide Nominatim Gattaglio; foto Idealista CDN; aggiunto in mappa"
+  },
+  "133006226": {
+    "title": "Quadrilocale via Bismantova, Baragalla-Canalina-Migliolungo, Reggio Emilia",
+    "zone": "Baragalla-Canalina-Migliolungo",
+    "address": "Via Bismantova, Baragalla-Canalina-Migliolungo, Reggio Emilia",
+    "price": 600,
+    "expenses": 60,
+    "costNote": "Spese condominiali 60 euro/mese comprensive di acqua; box incluso nel canone",
+    "mq": 90,
+    "rooms": 4,
+    "bedrooms": 2,
+    "baths": 1,
+    "floor": "3°",
+    "furnished": true,
+    "furnished_note": "completamente arredato (Casa.it)",
+    "garage": true,
+    "elevator": false,
+    "cellar": true,
+    "lat": 44.6844518,
+    "lng": 10.6188007,
+    "approx": true,
+    "image": "photos/133006226.jpg",
+    "url": "https://www.immobiliare.it/annunci/133006226/",
+    "link": "https://www.immobiliare.it/annunci/133006226/",
+    "mirrors": [
+      "https://www.casa.it/immobili/54922075/"
+    ],
+    "available": true,
+    "source": "casa_it_mirror_immobiliare_2026-10-07",
+    "agency": null,
+    "agency_ref": null,
+    "contract": "lungo termine (4+4 / 3+2)",
+    "maxPeople": 2,
+    "extras": "balcone, cantina, box singolo 14 mq (incluso), riscaldamento autonomo, no clima",
+    "note": "Immo Bilio 07/10 ~12:58: Immobiliare 133006226 (instant alert 07/10 thread 1a115df770ffce7d) DataDome 403; mirror Casa.it 54922075 (alert thread 1a115fd7f7438373): Via Bismantova, Baragalla-Canalina-Migliolungo, 600 euro/mese, 90 mq, 4 locali, 1 bagno: ingresso, ampia sala con balcone, cucina abitabile, due camere matrimoniali, bagno finestrato con box doccia e lavatrice, cantina e garage; 3° piano senza ascensore; completamente arredato; spese 60 euro/mese comprensive di acqua; box incluso; cauzione 3 mesi; libero dal 1 dicembre; ATTENZIONE: riservato a coppie o due amici colleghi lavoratori (non famiglie), richiesto TI e referenze; classe G; agenzia non indicata; coords approx Nominatim centroide Via Bismantova RE; foto CDN Immobiliare l-c.jpg (id 2017154386); aggiunto in mappa"
   }
 }
